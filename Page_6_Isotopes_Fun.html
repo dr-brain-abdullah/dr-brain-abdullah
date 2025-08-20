@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👯‍♂️ Page 6: Isotopes - Same Element, Different Weights!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.2); }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.4), 0 0 30px rgba(255,255,255,0.2); }
+        }
+
+        .floating-atoms {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-atom {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 8s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-30px) rotate(90deg); }
+            50% { transform: translateY(-15px) rotate(180deg); }
+            75% { transform: translateY(-25px) rotate(270deg); }
+        }
+
+        .lesson-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-button {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .section-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .analogy-box {
+            background: linear-gradient(135deg, #ff9ff3, #54a0ff);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .twins-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .twin {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            min-width: 200px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .twin:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .twin-face {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            animation: wiggle 3s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+
+        .twin-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #feca57;
+            margin-bottom: 10px;
+        }
+
+        .twin-details {
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .isotope-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .isotope-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .isotope-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #54a0ff);
+            animation: slideBar 3s infinite;
+        }
+
+        @keyframes slideBar {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .isotope-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .isotope-symbol {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #feca57;
+            margin-bottom: 15px;
+        }
+
+        .isotope-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .isotope-details {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 1.1rem;
+        }
+
+        .nucleus-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .nucleus {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #ff6b6b, #e74c3c);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 25px rgba(255, 107, 107, 0.5);
+            position: relative;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .proton, .neutron {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin: 2px;
+            display: inline-block;
+        }
+
+        .proton {
+            background: #ff6b6b;
+            box-shadow: 0 0 8px rgba(255, 107, 107, 0.8);
+        }
+
+        .neutron {
+            background: #95a5a6;
+            box-shadow: 0 0 8px rgba(149, 165, 166, 0.8);
+        }
+
+        .particle-legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 15px;
+        }
+
+        .interactive-builder {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .builder-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .control-button {
+            background: linear-gradient(45deg, #54a0ff, #5f27cd);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .control-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .quiz-question {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .quiz-option.correct {
+            background: rgba(46, 213, 115, 0.3);
+            border-color: #2ed573;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(255, 107, 107, 0.3);
+            border-color: #ff6b6b;
+        }
+
+        .comparison-table {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .comparison-table th {
+            background: rgba(255, 255, 255, 0.2);
+            font-weight: bold;
+            color: #feca57;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 40px;
+            border-top: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .teacher-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .teacher-detail {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        .teacher-icon {
+            font-size: 1.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .twins-container {
+                gap: 15px;
+            }
+            
+            .isotope-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .builder-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Atoms Background -->
+    <div class="floating-atoms">
+        <div class="floating-atom" style="left: 5%; animation-delay: 0s;">🏃‍♂️</div>
+        <div class="floating-atom" style="left: 15%; animation-delay: 1s;">🏃‍♀️</div>
+        <div class="floating-atom" style="left: 25%; animation-delay: 2s;">👯‍♂️</div>
+        <div class="floating-atom" style="left: 35%; animation-delay: 3s;">⚛️</div>
+        <div class="floating-atom" style="left: 45%; animation-delay: 4s;">🏃‍♂️</div>
+        <div class="floating-atom" style="left: 55%; animation-delay: 5s;">🏃‍♀️</div>
+        <div class="floating-atom" style="left: 65%; animation-delay: 0.5s;">👯‍♂️</div>
+        <div class="floating-atom" style="left: 75%; animation-delay: 1.5s;">⚛️</div>
+        <div class="floating-atom" style="left: 85%; animation-delay: 2.5s;">🏃‍♂️</div>
+        <div class="floating-atom" style="left: 95%; animation-delay: 3.5s;">🏃‍♀️</div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>👯‍♂️ Isotopes: Same Element, Different Weights!</h1>
+            <p>Meet the twin atoms that look the same but have different weights!</p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="lesson-navigation">
+            <button class="nav-button" onclick="goBack()">← Back to Unit</button>
+            <span style="color: white; font-weight: bold;">Page 6 Explanation</span>
+            <button class="nav-button" onclick="nextPage()">Next Page →</button>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">👯‍♂️</div>
+                What Are Isotopes?
+            </div>
+            
+            <div class="analogy-box">
+                <h3>🏃‍♂️ Think of Identical Twins Who Weigh Different!</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6; margin: 15px 0;">
+                    Imagine twin brothers who look exactly the same - same height, same face, same clothes! 
+                    But one twin has been eating more and weighs more than the other! 🍕
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 20px 0;">
+                    <li style="padding: 8px 0; font-size: 1.1rem;">👫 <strong>Same Identity</strong> = Same element name (like both being "hydrogen")</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">🆔 <strong>Same ID Number</strong> = Same atomic number (same protons)</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">⚖️ <strong>Different Weight</strong> = Different mass number (different neutrons)</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">🏠 <strong>Same House</strong> = Same position in periodic table</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Twins Analogy Visual -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">👫</div>
+                Meet the Atomic Twins!
+            </div>
+            
+            <div class="twins-container">
+                <div class="twin" onclick="explainTwin('light')">
+                    <div class="twin-face">🏃‍♂️</div>
+                    <div class="twin-name">Light Twin</div>
+                    <div class="twin-details">
+                        Same face (element)<br>
+                        Same ID (atomic number)<br>
+                        <strong>Lighter weight!</strong><br>
+                        (Fewer neutrons)
+                    </div>
+                </div>
+                
+                <div style="font-size: 3rem; color: #feca57;">≈</div>
+                
+                <div class="twin" onclick="explainTwin('heavy')">
+                    <div class="twin-face">🏃‍♂️</div>
+                    <div class="twin-name">Heavy Twin</div>
+                    <div class="twin-details">
+                        Same face (element)<br>
+                        Same ID (atomic number)<br>
+                        <strong>Heavier weight!</strong><br>
+                        (More neutrons)
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 15px; margin: 20px 0; text-align: center;">
+                <h3>🌟 The Amazing Truth About Isotopes</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6;">
+                    Isotopes are atoms of the same element that have the same number of protons 
+                    but different numbers of neutrons! It's like having twin soccer players 
+                    with the same jersey number but different weights! ⚽
+                </p>
+            </div>
+        </div>
+
+        <!-- Hydrogen Isotopes Showcase -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">💧</div>
+                Hydrogen's Three Brothers
+            </div>
+            
+            <div class="isotope-showcase">
+                <div class="isotope-card" onclick="showIsotope('protium')">
+                    <div class="isotope-symbol">¹H</div>
+                    <div class="isotope-name">Protium</div>
+                    <div class="isotope-details">
+                        <div class="detail-row">
+                            <span>Protons:</span>
+                            <span>1 ⚡</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Neutrons:</span>
+                            <span>0 ⚪</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Mass:</span>
+                            <span>1</span>
+                        </div>
+                    </div>
+                    <div class="nucleus-visual">
+                        <div class="nucleus">
+                            <div style="font-size: 0.8rem;">The Lightweight!</div>
+                            <div class="proton"></div>
+                        </div>
+                    </div>
+                    <p style="color: #feca57; font-size: 1.1rem;">The smallest and lightest! Like a featherweight boxer! 🥊</p>
+                </div>
+                
+                <div class="isotope-card" onclick="showIsotope('deuterium')">
+                    <div class="isotope-symbol">²H</div>
+                    <div class="isotope-name">Deuterium</div>
+                    <div class="isotope-details">
+                        <div class="detail-row">
+                            <span>Protons:</span>
+                            <span>1 ⚡</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Neutrons:</span>
+                            <span>1 ⚪</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Mass:</span>
+                            <span>2</span>
+                        </div>
+                    </div>
+                    <div class="nucleus-visual">
+                        <div class="nucleus">
+                            <div style="font-size: 0.8rem;">The Middleweight!</div>
+                            <div class="proton"></div>
+                            <div class="neutron"></div>
+                        </div>
+                    </div>
+                    <p style="color: #feca57; font-size: 1.1rem;">Twice as heavy! Like adding a backpack! 🎒</p>
+                </div>
+                
+                <div class="isotope-card" onclick="showIsotope('tritium')">
+                    <div class="isotope-symbol">³H</div>
+                    <div class="isotope-name">Tritium</div>
+                    <div class="isotope-details">
+                        <div class="detail-row">
+                            <span>Protons:</span>
+                            <span>1 ⚡</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Neutrons:</span>
+                            <span>2 ⚪</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Mass:</span>
+                            <span>3</span>
+                        </div>
+                    </div>
+                    <div class="nucleus-visual">
+                        <div class="nucleus">
+                            <div style="font-size: 0.8rem;">The Heavyweight!</div>
+                            <div class="proton"></div>
+                            <div class="neutron"></div>
+                            <div class="neutron"></div>
+                        </div>
+                    </div>
+                    <p style="color: #feca57; font-size: 1.1rem;">Three times heavier! Like carrying two backpacks! 🎒🎒</p>
+                </div>
+            </div>
+            
+            <div class="particle-legend">
+                <div class="legend-item">
+                    <div class="proton"></div>
+                    <span>Proton (+ charge)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="neutron"></div>
+                    <span>Neutron (no charge)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Isotope Builder -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">🔬</div>
+                Interactive Isotope Builder
+            </div>
+            
+            <div class="interactive-builder">
+                <h3 style="text-align: center; margin-bottom: 20px;">🎮 Build Your Own Isotopes!</h3>
+                
+                <div class="builder-controls">
+                    <button class="control-button" onclick="buildCarbon(12)">Carbon-12</button>
+                    <button class="control-button" onclick="buildCarbon(13)">Carbon-13</button>
+                    <button class="control-button" onclick="buildCarbon(14)">Carbon-14</button>
+                    <button class="control-button" onclick="buildMagnesium(24)">Magnesium-24</button>
+                    <button class="control-button" onclick="buildMagnesium(25)">Magnesium-25</button>
+                    <button class="control-button" onclick="buildMagnesium(26)">Magnesium-26</button>
+                </div>
+                
+                <div id="builderDisplay" style="text-align: center; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 20px 0;">
+                    <p style="font-size: 1.3rem; color: #feca57;">👆 Click a button above to build isotopes!</p>
+                    <p style="font-size: 1.1rem; margin-top: 10px;">Watch how the same element can have different weights!</p>
+                </div>
+                
+                <div id="isotopeComparison" style="margin-top: 20px;"></div>
+            </div>
+        </div>
+
+        <!-- Sports Team Analogy -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">⚽</div>
+                The Soccer Team Analogy
+            </div>
+            
+            <div class="analogy-box">
+                <h3>⚽ Isotopes Are Like Soccer Players With Same Jersey Numbers!</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6; margin: 15px 0;">
+                    Imagine three soccer players all wearing jersey #1 (same atomic number), 
+                    but they have different weights because they carry different equipment! 🥅
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                        <h4 style="color: #feca57;">⚽ Player #1 (Light)</h4>
+                        <p>Just soccer ball<br>Weight: Light<br>Like Protium!</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                        <h4 style="color: #feca57;">⚽ Player #1 (Medium)</h4>
+                        <p>Soccer ball + water bottle<br>Weight: Medium<br>Like Deuterium!</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                        <h4 style="color: #feca57;">⚽ Player #1 (Heavy)</h4>
+                        <p>Soccer ball + water + towel<br>Weight: Heavy<br>Like Tritium!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">📊</div>
+                Isotope Comparison Chart
+            </div>
+            
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Isotope Name</th>
+                            <th>Symbol</th>
+                            <th>Protons</th>
+                            <th>Neutrons</th>
+                            <th>Mass Number</th>
+                            <th>Fun Fact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Protium</td>
+                            <td>¹H</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>Most common hydrogen! 🌟</td>
+                        </tr>
+                        <tr>
+                            <td>Deuterium</td>
+                            <td>²H</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>Makes "heavy water"! 💧</td>
+                        </tr>
+                        <tr>
+                            <td>Tritium</td>
+                            <td>³H</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>Glows in the dark! ✨</td>
+                        </tr>
+                        <tr>
+                            <td>Carbon-12</td>
+                            <td>¹²C</td>
+                            <td>6</td>
+                            <td>6</td>
+                            <td>12</td>
+                            <td>In pencils and diamonds! ✏️💎</td>
+                        </tr>
+                        <tr>
+                            <td>Carbon-14</td>
+                            <td>¹⁴C</td>
+                            <td>6</td>
+                            <td>8</td>
+                            <td>14</td>
+                            <td>Helps date ancient things! 🏺</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">🎯</div>
+                Test Your Isotope Knowledge!
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    🤔 What makes isotopes of the same element different from each other?
+                </div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        Different number of protons
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">
+                        Different number of neutrons
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        Different number of electrons
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        Different atomic number
+                    </div>
+                </div>
+                <div id="quiz-feedback" style="margin-top: 20px; font-weight: bold; text-align: center;"></div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">📝</div>
+                What We've Learned About Isotopes!
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 15px;">
+                <h3>🌟 Isotope Summary:</h3>
+                <ul style="list-style: none; padding: 0; margin: 20px 0; line-height: 1.8;">
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ Isotopes are atoms of the same element with different weights</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ Same atomic number (protons) but different mass number</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ The difference comes from different numbers of neutrons</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ Like twins with same face but different weights</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ Examples: Hydrogen has 3 isotopes, Carbon has many!</li>
+                </ul>
+                
+                <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 5px solid #667eea;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">🚀 Coming Up Next:</h4>
+                    <p style="color: #666;">Next, we'll learn about the periodic table - the organized home where all elements live!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Navigation -->
+        <div class="lesson-navigation">
+            <button class="nav-button" onclick="goBack()">← Previous Page</button>
+            <button class="nav-button" onclick="reviewPage()">🔄 Review This Page</button>
+            <button class="nav-button" onclick="nextPage()">Next Page →</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="teacher-info">
+            <div class="teacher-detail">
+                <div class="teacher-icon">👨‍🏫</div>
+                <span>Mr: Abdullah Mostafa</span>
+            </div>
+            <div class="teacher-detail">
+                <div class="teacher-icon">📱</div>
+                <span>01155205311</span>
+            </div>
+            <div class="teacher-detail">
+                <div class="teacher-icon">📧</div>
+                <span>ABmostafa28@gmail.com</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Explain twin function
+        function explainTwin(type) {
+            const explanations = {
+                'light': {
+                    title: 'Light Twin Isotope',
+                    description: 'This is like a lightweight boxer! Same element identity but fewer neutrons, making it lighter. Think of it as carrying less equipment in your backpack!',
+                    example: 'Like Protium (¹H) - just 1 proton, no neutrons!'
+                },
+                'heavy': {
+                    title: 'Heavy Twin Isotope',
+                    description: 'This is like a heavyweight boxer! Same element identity but more neutrons, making it heavier. Think of it as carrying more equipment in your backpack!',
+                    example: 'Like Tritium (³H) - 1 proton, 2 neutrons!'
+                }
+            };
+            
+            const explanation = explanations[type];
+            alert(`👯‍♂️ ${explanation.title}\n\n${explanation.description}\n\n📚 Example: ${explanation.example}`);
+        }
+
+        // Show isotope details
+        function showIsotope(isotope) {
+            const isotopes = {
+                'protium': {
+                    name: 'Protium',
+                    description: 'The lightest hydrogen! Just 1 proton and NO neutrons. It\'s like a soccer player with just a ball - super light and fast! Most hydrogen in water is protium!',
+                    analogy: 'Like riding a bike with no extra gear! 🚲'
+                },
+                'deuterium': {
+                    name: 'Deuterium',
+                    description: 'Heavy hydrogen! 1 proton and 1 neutron. It\'s like a soccer player carrying a water bottle - twice as heavy as protium! Makes "heavy water"!',
+                    analogy: 'Like riding a bike with a backpack! 🚲🎒'
+                },
+                'tritium': {
+                    name: 'Tritium',
+                    description: 'Super heavy hydrogen! 1 proton and 2 neutrons. It\'s like a soccer player carrying water AND a towel - three times heavier than protium! It even glows!',
+                    analogy: 'Like riding a bike with two backpacks! 🚲🎒🎒'
+                }
+            };
+            
+            const info = isotopes[isotope];
+            
+            // Create modal-like display
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                background: rgba(0,0,0,0.8); z-index: 1000; display: flex; 
+                align-items: center; justify-content: center; padding: 20px;
+            `;
+            modal.innerHTML = `
+                <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 20px; max-width: 600px; position: relative;">
+                    <h2 style="text-align: center; margin-bottom: 20px;">💧 ${info.name}</h2>
+                    <p style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 15px;">${info.description}</p>
+                    <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                        <p style="color: #feca57; font-size: 1.1rem;">${info.analogy}</p>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.3); border: none; color: white; font-size: 1.5rem; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">×</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Build isotopes function
+        function buildCarbon(massNumber) {
+            const builderDisplay = document.getElementById('builderDisplay');
+            const comparison = document.getElementById('isotopeComparison');
+            
+            const protons = 6; // Carbon always has 6 protons
+            const neutrons = massNumber - protons;
+            
+            builderDisplay.innerHTML = `
+                <div style="animation: slideInUp 0.5s ease-out;">
+                    <h3>🧪 Carbon-${massNumber}</h3>
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px; margin: 20px 0; flex-wrap: wrap;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 3rem; margin-bottom: 10px;">¹${massNumber}C</div>
+                            <div style="font-size: 1.2rem;">Symbol</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 15px;">
+                            <div style="margin: 10px 0;">⚡ Protons: ${protons}</div>
+                            <div style="margin: 10px 0;">⚪ Neutrons: ${neutrons}</div>
+                            <div style="margin: 10px 0;">📊 Mass: ${massNumber}</div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                        <p style="color: #feca57;">🌟 ${getIsotopeInfo(massNumber)}</p>
+                    </div>
+                </div>
+            `;
+            
+            // Show comparison if multiple isotopes built
+            updateComparison('Carbon', massNumber);
+        }
+
+        function buildMagnesium(massNumber) {
+            const builderDisplay = document.getElementById('builderDisplay');
+            
+            const protons = 12; // Magnesium always has 12 protons
+            const neutrons = massNumber - protons;
+            
+            builderDisplay.innerHTML = `
+                <div style="animation: slideInUp 0.5s ease-out;">
+                    <h3>🧪 Magnesium-${massNumber}</h3>
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px; margin: 20px 0; flex-wrap: wrap;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 3rem; margin-bottom: 10px;">²${massNumber}Mg</div>
+                            <div style="font-size: 1.2rem;">Symbol</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 15px;">
+                            <div style="margin: 10px 0;">⚡ Protons: ${protons}</div>
+                            <div style="margin: 10px 0;">⚪ Neutrons: ${neutrons}</div>
+                            <div style="margin: 10px 0;">📊 Mass: ${massNumber}</div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                        <p style="color: #feca57;">🌟 ${getMagnesiumInfo(massNumber)}</p>
+                    </div>
+                </div>
+            `;
+            
+            updateComparison('Magnesium', massNumber);
+        }
+
+        function getIsotopeInfo(massNumber) {
+            const info = {
+                12: 'Most common carbon! Found in all living things, pencils, and diamonds! ✏️💎',
+                13: 'Slightly heavier carbon! Used in medical scans and research! 🏥',
+                14: 'Heavy carbon that helps scientists date ancient objects! Perfect for archaeology! 🏺'
+            };
+            return info[massNumber] || 'Special carbon isotope!';
+        }
+
+        function getMagnesiumInfo(massNumber) {
+            const info = {
+                24: 'Most common magnesium! Found in your bones and muscles! 💪',
+                25: 'Medium weight magnesium! Still helps make you strong! 🦴',
+                26: 'Heaviest common magnesium! Great for making lightweight metals! ✈️'
+            };
+            return info[massNumber] || 'Special magnesium isotope!';
+        }
+
+        let builtIsotopes = [];
+
+        function updateComparison(element, massNumber) {
+            const isotope = `${element}-${massNumber}`;
+            if (!builtIsotopes.includes(isotope)) {
+                builtIsotopes.push(isotope);
+            }
+            
+            if (builtIsotopes.length > 1) {
+                const comparison = document.getElementById('isotopeComparison');
+                comparison.innerHTML = `
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; margin-top: 20px;">
+                        <h4 style="text-align: center; margin-bottom: 15px;">🔍 Isotopes You've Built:</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                            ${builtIsotopes.map(iso => `
+                                <div style="background: rgba(255,255,255,0.2); padding: 10px 15px; border-radius: 10px; font-size: 1.1rem;">
+                                    ${iso}
+                                </div>
+                            `).join('')}
+                        </div>
+                        <p style="text-align: center; margin-top: 15px; color: #feca57;">
+                            Notice how they have the same element name but different numbers! 🎯
+                        </p>
+                    </div>
+                `;
+            }
+        }
+
+        // Quiz function
+        function checkAnswer(element, isCorrect) {
+            const feedback = document.getElementById('quiz-feedback');
+            const options = document.querySelectorAll('.quiz-option');
+            
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+                if (option === element) {
+                    if (isCorrect) {
+                        option.classList.add('correct');
+                        feedback.innerHTML = '🎉 Excellent! Isotopes differ in neutron number, like twins with different backpacks!';
+                        feedback.style.color = '#2ed573';
+                        
+                        // Celebration animation
+                        createConfetti();
+                    } else {
+                        option.classList.add('incorrect');
+                        feedback.innerHTML = '❌ Not quite! Remember: isotopes are like twins - same identity (protons) but different weight (neutrons)!';
+                        feedback.style.color = '#ff6b6b';
+                    }
+                }
+            });
+            
+            // Find and highlight correct answer
+            if (!isCorrect) {
+                setTimeout(() => {
+                    options.forEach(option => {
+                        if (option.textContent.includes('neutrons')) {
+                            option.classList.add('correct');
+                        }
+                    });
+                }, 1000);
+            }
+        }
+
+        // Create confetti animation
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `
+                    position: fixed;
+                    width: 10px;
+                    height: 10px;
+                    background: ${['#ff6b6b', '#feca57', '#54a0ff', '#5f27cd'][Math.floor(Math.random() * 4)]};
+                    top: -10px;
+                    left: ${Math.random() * window.innerWidth}px;
+                    animation: confetti-fall 3s linear forwards;
+                    z-index: 1000;
+                `;
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        // Navigation functions
+        function goBack() {
+            window.history.back();
+        }
+
+        function nextPage() {
+            alert('🚀 Awesome job learning about isotopes! You\'re ready for the next topic! Next, we\'ll explore the periodic table - the organized home where all elements live!');
+        }
+
+        function reviewPage() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Highlight key points
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.animation = 'pulse-glow 1s ease-in-out';
+                }, index * 500);
+            });
+        }
+
+        // Add additional CSS animations via JavaScript
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInUp {
+                0% { opacity: 0; transform: translateY(20px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
+            
+            @keyframes confetti-fall {
+                0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(${window.innerHeight + 10}px) rotate(720deg); opacity: 0; }
+            }
+            
+            @keyframes pulse-glow {
+                0% { box-shadow: 0 0 5px rgba(255,255,255,0.3); }
+                50% { box-shadow: 0 0 25px rgba(255,255,255,0.6), 0 0 35px rgba(255,255,255,0.4); }
+                100% { box-shadow: 0 0 5px rgba(255,255,255,0.3); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
