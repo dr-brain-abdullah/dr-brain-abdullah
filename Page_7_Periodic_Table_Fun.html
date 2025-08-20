@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🗂️ Page 7: The Periodic Table - The Ultimate Element Library!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.2); }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.4), 0 0 30px rgba(255,255,255,0.2); }
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: float 10s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-25px) rotate(90deg); }
+            50% { transform: translateY(-10px) rotate(180deg); }
+            75% { transform: translateY(-20px) rotate(270deg); }
+        }
+
+        .lesson-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-button {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .section-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .analogy-box {
+            background: linear-gradient(135deg, #ff9ff3, #54a0ff);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #ff6b6b, #feca57, #54a0ff);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 25px 25px 25px 80px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .timeline-content h3 {
+            color: #feca57;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .scientist-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .scientist-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scientist-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #54a0ff);
+            animation: slideBar 4s infinite;
+        }
+
+        @keyframes slideBar {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .scientist-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .scientist-portrait {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            animation: wiggle 3s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-3deg); }
+            75% { transform: rotate(3deg); }
+        }
+
+        .scientist-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #feca57;
+        }
+
+        .scientist-country {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #54a0ff;
+        }
+
+        .scientist-achievement {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .periodic-table-preview {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .table-grid {
+            display: grid;
+            grid-template-columns: repeat(18, 1fr);
+            gap: 3px;
+            margin: 20px 0;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .element-box {
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, #54a0ff, #5f27cd);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 40px;
+        }
+
+        .element-box:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+        }
+
+        .element-symbol {
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .element-number {
+            font-size: 0.6rem;
+            opacity: 0.8;
+        }
+
+        .library-analogy {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .library-section {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .library-section:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .library-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .modern-table-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .feature-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #feca57;
+            margin-bottom: 10px;
+        }
+
+        .feature-description {
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .quiz-question {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .quiz-option.correct {
+            background: rgba(46, 213, 115, 0.3);
+            border-color: #2ed573;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(255, 107, 107, 0.3);
+            border-color: #ff6b6b;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 40px;
+            border-top: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .teacher-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .teacher-detail {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        .teacher-icon {
+            font-size: 1.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .table-grid {
+                grid-template-columns: repeat(9, 1fr);
+            }
+            
+            .scientist-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                padding-left: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements Background -->
+    <div class="floating-elements">
+        <div class="floating-element" style="left: 5%; animation-delay: 0s;">📚</div>
+        <div class="floating-element" style="left: 15%; animation-delay: 1s;">🗂️</div>
+        <div class="floating-element" style="left: 25%; animation-delay: 2s;">👨‍🔬</div>
+        <div class="floating-element" style="left: 35%; animation-delay: 3s;">⚛️</div>
+        <div class="floating-element" style="left: 45%; animation-delay: 4s;">📖</div>
+        <div class="floating-element" style="left: 55%; animation-delay: 5s;">🧪</div>
+        <div class="floating-element" style="left: 65%; animation-delay: 0.5s;">🗃️</div>
+        <div class="floating-element" style="left: 75%; animation-delay: 1.5s;">🔬</div>
+        <div class="floating-element" style="left: 85%; animation-delay: 2.5s;">📋</div>
+        <div class="floating-element" style="left: 95%; animation-delay: 3.5s;">⚗️</div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🗂️ The Periodic Table: The Ultimate Element Library!</h1>
+            <p>Discover how scientists organized all the elements into the most amazing library ever!</p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="lesson-navigation">
+            <button class="nav-button" onclick="goBack()">← Back to Unit</button>
+            <span style="color: white; font-weight: bold;">Page 7 Explanation</span>
+            <button class="nav-button" onclick="nextPage()">Next Page →</button>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">📚</div>
+                What Is The Periodic Table?
+            </div>
+            
+            <div class="analogy-box">
+                <h3>📚 Think of the World's Most Amazing Library!</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6; margin: 15px 0;">
+                    Imagine the coolest library ever - instead of books, it has ALL the elements in the universe! 
+                    Each element has its own special spot, organized perfectly so scientists can find anything they need! 📖
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 20px 0;">
+                    <li style="padding: 8px 0; font-size: 1.1rem;">🗂️ <strong>Organized Shelves</strong> = Periods (horizontal rows)</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">📚 <strong>Book Categories</strong> = Groups (vertical columns)</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">📖 <strong>Individual Books</strong> = Each element</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">🏷️ <strong>Library Card Numbers</strong> = Atomic numbers</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Timeline Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">⏰</div>
+                The Amazing History: From Chaos to Order!
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 15px; margin: 20px 0;">
+                <h3>🌟 The Journey to Organization</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6;">
+                    Before the periodic table, elements were like a messy toy box! Scientists couldn't find patterns 
+                    or relationships. Then some brilliant minds decided to organize them - and it changed chemistry forever! 🚀
+                </p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item" onclick="explainTimeline('early')">
+                    <div class="timeline-icon">🤔</div>
+                    <div class="timeline-content">
+                        <h3>Early Attempts (1800s)</h3>
+                        <p>Scientists noticed some elements had similar properties, but couldn't figure out the pattern. 
+                        It was like trying to organize toys without knowing what categories to use!</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" onclick="explainTimeline('mendeleev')">
+                    <div class="timeline-icon">🇷🇺</div>
+                    <div class="timeline-content">
+                        <h3>Mendeleev's Breakthrough (1869)</h3>
+                        <p>Dmitri Mendeleev, a Russian scientist, created the first real periodic table! 
+                        He organized elements by weight and even predicted missing elements!</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" onclick="explainTimeline('moseley')">
+                    <div class="timeline-icon">🇬🇧</div>
+                    <div class="timeline-content">
+                        <h3>Moseley's Improvement (1913)</h3>
+                        <p>Henry Moseley, an English scientist, discovered that atomic numbers (not weights) 
+                        were the key to perfect organization!</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" onclick="explainTimeline('modern')">
+                    <div class="timeline-icon">🌟</div>
+                    <div class="timeline-content">
+                        <h3>Modern Periodic Table (Today)</h3>
+                        <p>Today's periodic table has 118 elements, perfectly organized by atomic number. 
+                        It's like the ultimate filing system for the universe!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scientists Showcase -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">👨‍🔬</div>
+                Meet the Periodic Table Heroes!
+            </div>
+            
+            <div class="scientist-showcase">
+                <div class="scientist-card" onclick="showScientist('mendeleev')">
+                    <div class="scientist-portrait">🧙‍♂️</div>
+                    <div class="scientist-name">Dmitri Mendeleev</div>
+                    <div class="scientist-country">🇷🇺 Russian Scientist</div>
+                    <div class="scientist-achievement">
+                        Created the first real periodic table! He was so confident in his pattern that he left empty 
+                        spaces for elements that hadn't been discovered yet - and he was right! 🎯
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 10px; margin-top: 15px;">
+                        <strong>Fun Fact:</strong> Element 101 is named "Mendelevium" after him! 🏆
+                    </div>
+                </div>
+                
+                <div class="scientist-card" onclick="showScientist('rutherford')">
+                    <div class="scientist-portrait">🔬</div>
+                    <div class="scientist-name">Ernest Rutherford</div>
+                    <div class="scientist-country">🇳🇿 New Zealand Scientist</div>
+                    <div class="scientist-achievement">
+                        Discovered that atoms have a nucleus with positive protons! This discovery helped us 
+                        understand why the periodic table works the way it does! ⚛️
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 10px; margin-top: 15px;">
+                        <strong>Fun Fact:</strong> Called the "father of nuclear physics"! 🧬
+                    </div>
+                </div>
+                
+                <div class="scientist-card" onclick="showScientist('moseley')">
+                    <div class="scientist-portrait">⚡</div>
+                    <div class="scientist-name">Henry Moseley</div>
+                    <div class="scientist-country">🇬🇧 English Scientist</div>
+                    <div class="scientist-achievement">
+                        Discovered that atomic numbers (not atomic weights) should be used to organize elements! 
+                        This fixed all the problems in Mendeleev's table! 🔧
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 10px; margin-top: 15px;">
+                        <strong>Fun Fact:</strong> He also added the noble gases group! 💨
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Library Analogy Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">🏛️</div>
+                The Element Library: How It's Organized
+            </div>
+            
+            <div class="analogy-box">
+                <h3>🏛️ Welcome to the Ultimate Library!</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6; margin: 15px 0;">
+                    The periodic table is like the most organized library in the universe! Every element has its 
+                    perfect spot based on its "ID number" (atomic number). Let's explore the different sections! 📚
+                </p>
+            </div>
+            
+            <div class="library-analogy">
+                <div class="library-section" onclick="explainSection('periods')">
+                    <div class="library-icon">➡️</div>
+                    <h3>Periods (Rows)</h3>
+                    <p>Like floors in a library! There are 7 floors total. Each floor represents a new energy level for electrons.</p>
+                </div>
+                
+                <div class="library-section" onclick="explainSection('groups')">
+                    <div class="library-icon">⬇️</div>
+                    <h3>Groups (Columns)</h3>
+                    <p>Like book categories! There are 18 different categories. Elements in the same group act similarly!</p>
+                </div>
+                
+                <div class="library-section" onclick="explainSection('blocks')">
+                    <div class="library-icon">🏢</div>
+                    <h3>Blocks (Sections)</h3>
+                    <p>Like different wings of the library! S-block, P-block, D-block, and F-block each have their own area.</p>
+                </div>
+                
+                <div class="library-section" onclick="explainSection('elements')">
+                    <div class="library-icon">📖</div>
+                    <h3>Elements (Books)</h3>
+                    <p>Like individual books! Each element has its own unique "book" with all its properties and information.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modern Table Features -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">🌟</div>
+                Amazing Facts About Today's Periodic Table!
+            </div>
+            
+            <div class="modern-table-features">
+                <div class="feature-card">
+                    <div class="feature-number">118</div>
+                    <div class="feature-description">Total Elements<br>🧪 From Hydrogen to Oganesson!</div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-number">7</div>
+                    <div class="feature-description">Horizontal Periods<br>➡️ Like floors in our library!</div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-number">18</div>
+                    <div class="feature-description">Vertical Groups<br>⬇️ Like book categories!</div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-number">4</div>
+                    <div class="feature-description">Element Blocks<br>🏢 S, P, D, and F sections!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Periodic Table Preview -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">🗂️</div>
+                Mini Periodic Table Explorer
+            </div>
+            
+            <div class="periodic-table-preview">
+                <h3 style="margin-bottom: 20px;">🎮 Click any element to learn about it!</h3>
+                <p style="margin-bottom: 20px; color: #feca57;">This is a simplified view - the real table has 118 elements!</p>
+                
+                <div class="table-grid" id="miniPeriodicTable">
+                    <!-- This will be populated by JavaScript -->
+                </div>
+                
+                <div id="elementInfo" style="margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.2); border-radius: 15px; min-height: 80px;">
+                    <p style="font-size: 1.2rem; color: #feca57;">👆 Click any element above to discover its secrets!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sports Team Analogy -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">⚽</div>
+                The Soccer Team Analogy
+            </div>
+            
+            <div class="analogy-box">
+                <h3>⚽ The Periodic Table is Like a Soccer League!</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6; margin: 15px 0;">
+                    Think of the periodic table as a soccer league with different divisions and teams! 🏆
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                        <h4 style="color: #feca57;">🏟️ Periods = Leagues</h4>
+                        <p>7 different leagues (Division 1-7)<br>Each team starts a new energy level!</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                        <h4 style="color: #feca57;">👕 Groups = Team Uniforms</h4>
+                        <p>18 different uniform styles<br>Teams with same uniform play similarly!</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                        <h4 style="color: #feca57;">🏃‍♂️ Elements = Players</h4>
+                        <p>118 unique players<br>Each with their own special skills!</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                        <h4 style="color: #feca57;">🔢 Atomic Number = Jersey Number</h4>
+                        <p>Each player has a unique number<br>From 1 (Hydrogen) to 118 (Oganesson)!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">🎯</div>
+                Test Your Periodic Table Knowledge!
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    🤔 Who created the first real periodic table?
+                </div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">
+                        Dmitri Mendeleev
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        Henry Moseley
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        Ernest Rutherford
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        Albert Einstein
+                    </div>
+                </div>
+                <div id="quiz-feedback" style="margin-top: 20px; font-weight: bold; text-align: center;"></div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">📝</div>
+                What We've Learned About The Periodic Table!
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 15px;">
+                <h3>🌟 Periodic Table Summary:</h3>
+                <ul style="list-style: none; padding: 0; margin: 20px 0; line-height: 1.8;">
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ The periodic table is like the ultimate element library</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ Mendeleev created the first version in 1869</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ Moseley improved it by using atomic numbers</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ Today it has 118 elements in perfect order</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ Elements in the same group have similar properties</li>
+                </ul>
+                
+                <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 5px solid #667eea;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">🚀 Coming Up Next:</h4>
+                    <p style="color: #666;">Next, we'll explore the different blocks and groups in the periodic table!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Navigation -->
+        <div class="lesson-navigation">
+            <button class="nav-button" onclick="goBack()">← Previous Page</button>
+            <button class="nav-button" onclick="reviewPage()">🔄 Review This Page</button>
+            <button class="nav-button" onclick="nextPage()">Next Page →</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="teacher-info">
+            <div class="teacher-detail">
+                <div class="teacher-icon">👨‍🏫</div>
+                <span>Mr: Abdullah Mostafa</span>
+            </div>
+            <div class="teacher-detail">
+                <div class="teacher-icon">📱</div>
+                <span>01155205311</span>
+            </div>
+            <div class="teacher-detail">
+                <div class="teacher-icon">📧</div>
+                <span>ABmostafa28@gmail.com</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create mini periodic table
+        function createMiniPeriodicTable() {
+            const table = document.getElementById('miniPeriodicTable');
+            const elements = [
+                {symbol: 'H', number: 1, name: 'Hydrogen', fact: 'The lightest element! Found in water and stars! ⭐'},
+                {symbol: 'He', number: 2, name: 'Helium', fact: 'Makes balloons float! Also found in the sun! 🎈'},
+                {symbol: 'Li', number: 3, name: 'Lithium', fact: 'Used in phone batteries! Very reactive! 🔋'},
+                {symbol: 'Be', number: 4, name: 'Beryllium', fact: 'Used in aerospace! Light but strong! ✈️'},
+                {symbol: 'B', number: 5, name: 'Boron', fact: 'Essential for plants! Makes glass strong! 🌱'},
+                {symbol: 'C', number: 6, name: 'Carbon', fact: 'In all living things! Makes diamonds! 💎'},
+                {symbol: 'N', number: 7, name: 'Nitrogen', fact: 'Makes up 78% of air! Essential for life! 💨'},
+                {symbol: 'O', number: 8, name: 'Oxygen', fact: 'What we breathe! Needed for fire! 🔥'},
+                {symbol: 'F', number: 9, name: 'Fluorine', fact: 'In toothpaste! Prevents cavities! 🦷'},
+                {symbol: 'Ne', number: 10, name: 'Neon', fact: 'Makes bright signs! Glows orange-red! 🔴'},
+                {symbol: 'Na', number: 11, name: 'Sodium', fact: 'In table salt! Very reactive with water! 🧂'},
+                {symbol: 'Mg', number: 12, name: 'Magnesium', fact: 'Burns with bright white light! In bones! 💀'},
+                {symbol: 'Al', number: 13, name: 'Aluminum', fact: 'Used in cans and planes! Light metal! 🥤'},
+                {symbol: 'Si', number: 14, name: 'Silicon', fact: 'In computer chips and sand! 💻'},
+                {symbol: 'P', number: 15, name: 'Phosphorus', fact: 'Glows in the dark! In DNA! 🧬'},
+                {symbol: 'S', number: 16, name: 'Sulfur', fact: 'Smells like rotten eggs! In proteins! 🥚'},
+                {symbol: 'Cl', number: 17, name: 'Chlorine', fact: 'Used to clean pools! In table salt! 🏊'},
+                {symbol: 'Ar', number: 18, name: 'Argon', fact: 'Used in light bulbs! Noble gas! 💡'}
+            ];
+
+            // Create first 18 elements in simplified layout
+            elements.forEach((element, index) => {
+                const elementBox = document.createElement('div');
+                elementBox.className = 'element-box';
+                elementBox.innerHTML = `
+                    <div class="element-number">${element.number}</div>
+                    <div class="element-symbol">${element.symbol}</div>
+                `;
+                elementBox.onclick = () => showElementInfo(element);
+                table.appendChild(elementBox);
+            });
+        }
+
+        // Show element information
+        function showElementInfo(element) {
+            const infoDiv = document.getElementById('elementInfo');
+            infoDiv.innerHTML = `
+                <div style="animation: slideInUp 0.5s ease-out;">
+                    <h3 style="color: #feca57; margin-bottom: 10px;">${element.symbol} - ${element.name}</h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>Atomic Number:</strong> ${element.number}</p>
+                    <p style="font-size: 1.1rem; line-height: 1.4;">${element.fact}</p>
+                </div>
+            `;
+        }
+
+        // Explain timeline items
+        function explainTimeline(period) {
+            const explanations = {
+                'early': {
+                    title: 'Early Attempts (1800s)',
+                    description: 'Before Mendeleev, scientists were like kids trying to organize a huge toy box without knowing what toys they had! They noticed some elements behaved similarly, but couldn\'t figure out the pattern. It was frustrating! 😤',
+                    analogy: 'Like trying to organize your closet without knowing what clothes you have!'
+                },
+                'mendeleev': {
+                    title: 'Mendeleev\'s Breakthrough (1869)',
+                    description: 'Dmitri Mendeleev was like a detective who finally cracked the case! He arranged elements by weight and noticed patterns. When his pattern had gaps, he boldly predicted new elements would be found there - and he was right! 🕵️‍♂️',
+                    analogy: 'Like solving a jigsaw puzzle and knowing what missing pieces look like!'
+                },
+                'moseley': {
+                    title: 'Moseley\'s Improvement (1913)',
+                    description: 'Henry Moseley discovered that atomic numbers (not weights) were the real key! It was like finding out that library books should be organized by ID numbers, not by thickness! This fixed all the remaining problems! 🔑',
+                    analogy: 'Like organizing your music by song number instead of album size!'
+                },
+                'modern': {
+                    title: 'Modern Periodic Table (Today)',
+                    description: 'Today\'s periodic table is perfect! It has 118 elements arranged by atomic number, and every element fits exactly where it should. Scientists can predict properties of new elements before they\'re even discovered! 🎯',
+                    analogy: 'Like having the perfect filing system where everything has its place!'
+                }
+            };
+            
+            const info = explanations[period];
+            
+            // Create modal-like display
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                background: rgba(0,0,0,0.8); z-index: 1000; display: flex; 
+                align-items: center; justify-content: center; padding: 20px;
+            `;
+            modal.innerHTML = `
+                <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 20px; max-width: 600px; position: relative;">
+                    <h2 style="text-align: center; margin-bottom: 20px;">⏰ ${info.title}</h2>
+                    <p style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 15px;">${info.description}</p>
+                    <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                        <p style="color: #feca57; font-size: 1.1rem;">${info.analogy}</p>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.3); border: none; color: white; font-size: 1.5rem; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">×</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Show scientist details
+        function showScientist(scientist) {
+            const scientists = {
+                'mendeleev': {
+                    name: 'Dmitri Mendeleev',
+                    description: 'This Russian genius was like a puzzle master! He saw patterns that nobody else could see. He even dreamed about the periodic table and woke up with the solution! His table was so good that when new elements were discovered, they fit perfectly into his predictions! 🧩',
+                    achievement: 'Created the first periodic table and predicted unknown elements!'
+                },
+                'rutherford': {
+                    name: 'Ernest Rutherford',
+                    description: 'This New Zealand scientist was like an atomic detective! He shot tiny particles at atoms and discovered they have a dense center (nucleus) with positive protons. This discovery helped explain why the periodic table works! 🕵️‍♂️',
+                    achievement: 'Discovered the atomic nucleus and protons!'
+                },
+                'moseley': {
+                    name: 'Henry Moseley',
+                    description: 'This young English scientist was like a perfectionist who fixed the periodic table! He discovered that atomic numbers (not weights) should determine the order. Sadly, he died young in World War I, but his work made the modern periodic table possible! 🌟',
+                    achievement: 'Perfected the periodic table using atomic numbers!'
+                }
+            };
+            
+            const info = scientists[scientist];
+            alert(`👨‍🔬 ${info.name}\n\n${info.description}\n\n🏆 Achievement: ${info.achievement}`);
+        }
+
+        // Explain library sections
+        function explainSection(section) {
+            const sections = {
+                'periods': {
+                    title: 'Periods (Horizontal Rows)',
+                    description: 'Think of periods like floors in a library! There are 7 floors total. As you go up each floor, atoms get bigger and have more electrons. All elements on the same floor have the same number of electron energy levels!',
+                    example: 'Floor 1 has H and He, Floor 2 has Li to Ne, etc.'
+                },
+                'groups': {
+                    title: 'Groups (Vertical Columns)',
+                    description: 'Think of groups like book categories! There are 18 different categories. Elements in the same column behave very similarly because they have the same number of electrons in their outer shell!',
+                    example: 'Group 1 (alkali metals) all react explosively with water!'
+                },
+                'blocks': {
+                    title: 'Blocks (Element Families)',
+                    description: 'Think of blocks like different wings of the library! S-block, P-block, D-block, and F-block each contain elements with similar electron arrangements. It\'s like organizing books by genre!',
+                    example: 'S-block has metals, P-block has gases, D-block has transition metals!'
+                },
+                'elements': {
+                    title: 'Elements (Individual Books)',
+                    description: 'Each element is like a unique book with its own story! Every element has different properties, uses, and behaviors. But elements in the same "section" have similar "stories"!',
+                    example: 'Hydrogen is Book #1, Helium is Book #2, etc.'
+                }
+            };
+            
+            const info = sections[section];
+            alert(`📚 ${info.title}\n\n${info.description}\n\n📖 Example: ${info.example}`);
+        }
+
+        // Quiz function
+        function checkAnswer(element, isCorrect) {
+            const feedback = document.getElementById('quiz-feedback');
+            const options = document.querySelectorAll('.quiz-option');
+            
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+                if (option === element) {
+                    if (isCorrect) {
+                        option.classList.add('correct');
+                        feedback.innerHTML = '🎉 Excellent! Dmitri Mendeleev created the first real periodic table in 1869!';
+                        feedback.style.color = '#2ed573';
+                        
+                        // Celebration animation
+                        createConfetti();
+                    } else {
+                        option.classList.add('incorrect');
+                        feedback.innerHTML = '❌ Not quite! While these scientists made important contributions, Mendeleev created the first periodic table!';
+                        feedback.style.color = '#ff6b6b';
+                    }
+                }
+            });
+            
+            // Find and highlight correct answer
+            if (!isCorrect) {
+                setTimeout(() => {
+                    options.forEach(option => {
+                        if (option.textContent.includes('Mendeleev')) {
+                            option.classList.add('correct');
+                        }
+                    });
+                }, 1000);
+            }
+        }
+
+        // Create confetti animation
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `
+                    position: fixed;
+                    width: 10px;
+                    height: 10px;
+                    background: ${['#ff6b6b', '#feca57', '#54a0ff', '#5f27cd'][Math.floor(Math.random() * 4)]};
+                    top: -10px;
+                    left: ${Math.random() * window.innerWidth}px;
+                    animation: confetti-fall 3s linear forwards;
+                    z-index: 1000;
+                `;
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        // Navigation functions
+        function goBack() {
+            window.history.back();
+        }
+
+        function nextPage() {
+            alert('🚀 Amazing job learning about the periodic table! You\'re ready for the next adventure! Next, we\'ll explore the different blocks and families of elements!');
+        }
+
+        function reviewPage() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Highlight key points
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.animation = 'pulse-glow 1s ease-in-out';
+                }, index * 500);
+            });
+        }
+
+        // Add additional CSS animations via JavaScript
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInUp {
+                0% { opacity: 0; transform: translateY(20px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
+            
+            @keyframes confetti-fall {
+                0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(${window.innerHeight + 10}px) rotate(720deg); opacity: 0; }
+            }
+            
+            @keyframes pulse-glow {
+                0% { box-shadow: 0 0 5px rgba(255,255,255,0.3); }
+                50% { box-shadow: 0 0 25px rgba(255,255,255,0.6), 0 0 35px rgba(255,255,255,0.4); }
+                100% { box-shadow: 0 0 5px rgba(255,255,255,0.3); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize mini periodic table when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createMiniPeriodicTable();
+        });
+    </script>
+</body>
+</html>
