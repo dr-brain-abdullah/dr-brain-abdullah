@@ -538,7 +538,7 @@
                 'lesson3': 'Lesson_3_Particle_Properties.html',
                 'lesson4': 'Lesson_4_Chemical_Symbols.html',
                 'lesson5': 'Lesson_5_Atomic_Mass_Numbers.html',
-                'lesson6': 'Lesson_6_Electronic_Configuration.html',
+                'lesson6': 'Page_5_Electronic_Configuration_Fun.html',
                 'lesson7': 'Lesson_7_Periodic_Table.html',
                 'lesson8': 'Lesson_8_Unit_Review.html'
             };
@@ -551,7 +551,7 @@
                 createLessonPage(lessonId);
                 
                 // Check if lesson file exists, if not show coming soon message
-                if (['lesson3', 'lesson4', 'lesson5', 'lesson6', 'lesson7', 'lesson8'].includes(lessonId)) {
+                if (['lesson3', 'lesson4', 'lesson5', 'lesson7', 'lesson8'].includes(lessonId)) {
                     alert(`📚 ${lessonId.replace('lesson', 'Lesson ')} is being prepared!\n\nThis comprehensive lesson will include:\n• Interactive animations\n• Detailed explanations\n• Practice exercises\n• Visual demonstrations\n\nComing soon! 🚀`);
                 } else {
                     window.open(lessons[lessonId], '_blank');
