@@ -1211,5 +1211,122 @@
             });
         });
     </script>
+
+    <!-- Teacher Footer -->
+    <footer style="
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px 20px;
+        text-align: center;
+        margin-top: 50px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+    ">
+        <div style="
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.2);
+        ">
+            <h3 style="
+                margin: 0 0 20px 0;
+                font-size: 2rem;
+                background: linear-gradient(45deg, #fff, #e0e7ff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            ">
+                🎓 الأستاذ عبد الله مصطفى
+            </h3>
+            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 20px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.5rem;">📱</span>
+                    <span style="font-size: 1.1rem; font-weight: 500;">01155205311</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.5rem;">📧</span>
+                    <a href="mailto:ABmostafa28@gmail.com" style="
+                        color: #e0e7ff;
+                        text-decoration: none;
+                        font-size: 1.1rem;
+                        font-weight: 500;
+                        transition: all 0.3s ease;
+                    " onmouseover="this.style.color='#fff'; this.style.textShadow='0 0 10px #fff'" 
+                       onmouseout="this.style.color='#e0e7ff'; this.style.textShadow='none'">
+                        ABmostafa28@gmail.com
+                    </a>
+                </div>
+            </div>
+            <p style="
+                margin: 25px 0 0 0;
+                font-size: 1rem;
+                opacity: 0.9;
+                line-height: 1.6;
+            ">
+                ✨ معلم الكيمياء - متخصص في تبسيط العلوم للطلاب ✨
+            </p>
+        </div>
+        
+        <!-- Floating particles animation -->
+        <div style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        ">
+            <div style="
+                position: absolute;
+                animation: float 6s ease-in-out infinite;
+                opacity: 0.3;
+                font-size: 2rem;
+                top: 20%;
+                left: 10%;
+            ">⚛️</div>
+            <div style="
+                position: absolute;
+                animation: float 8s ease-in-out infinite reverse;
+                opacity: 0.3;
+                font-size: 1.5rem;
+                top: 60%;
+                right: 15%;
+            ">🧪</div>
+            <div style="
+                position: absolute;
+                animation: float 7s ease-in-out infinite;
+                opacity: 0.3;
+                font-size: 1.8rem;
+                bottom: 30%;
+                left: 20%;
+            ">📚</div>
+        </div>
+    </footer>
+
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        @media (max-width: 768px) {
+            footer div:first-child {
+                padding: 20px !important;
+            }
+            footer h3 {
+                font-size: 1.5rem !important;
+            }
+            footer > div > div {
+                flex-direction: column !important;
+                gap: 15px !important;
+            }
+        }
+    </style>
 </body>
 </html>
