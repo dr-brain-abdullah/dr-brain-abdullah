@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔢 Page 4: Atomic Numbers & Electronic Configuration - The Atom's Address System!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            animation: rainbow-text 3s infinite;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        /* Floating numbers animation */
+        .floating-numbers {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-number {
+            position: absolute;
+            font-size: 2rem;
+            animation: float-around 20s infinite linear;
+            opacity: 0.2;
+            font-weight: bold;
+        }
+
+        .floating-number:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; color: #ff6b6b; }
+        .floating-number:nth-child(2) { top: 20%; right: 15%; animation-delay: 4s; color: #4ecdc4; }
+        .floating-number:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 8s; color: #45b7d1; }
+        .floating-number:nth-child(4) { bottom: 20%; right: 25%; animation-delay: 12s; color: #96ceb4; }
+        .floating-number:nth-child(5) { top: 50%; left: 5%; animation-delay: 16s; color: #feca57; }
+
+        /* Content sections */
+        .content-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: slide-in 0.8s ease-out;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        /* NPK Fertilizers section */
+        .fertilizer-section {
+            background: linear-gradient(45deg, #84fab0, #8fd3f4);
+            color: #333;
+        }
+
+        .npk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .nutrient-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nutrient-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+            opacity: 0;
+        }
+
+        .nutrient-card:hover::before {
+            animation: shine 0.6s ease-in-out;
+            opacity: 1;
+        }
+
+        .nutrient-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .nutrient-symbol {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            animation: nutrient-pulse 2s infinite;
+        }
+
+        .nitrogen { color: #2ecc71; }
+        .phosphorus { color: #e74c3c; }
+        .potassium { color: #f39c12; }
+
+        /* Atomic number section */
+        .atomic-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .atom-demo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .interactive-atom {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-atom:hover {
+            transform: scale(1.1);
+        }
+
+        .nucleus {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #ff6b6b, #e55353);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+            animation: nucleus-glow 2s infinite;
+        }
+
+        .electron-orbit {
+            position: absolute;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: orbit-rotate 10s linear infinite;
+        }
+
+        .orbit-1 {
+            width: 80px;
+            height: 80px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .orbit-2 {
+            width: 120px;
+            height: 120px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 15s;
+        }
+
+        .orbit-3 {
+            width: 160px;
+            height: 160px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 20s;
+        }
+
+        .electron {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #4ecdc4, #44a08d);
+            border-radius: 50%;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(78, 205, 196, 0.8);
+            animation: electron-glow 1s infinite alternate;
+        }
+
+        /* Elements table */
+        .elements-table {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            color: #333;
+        }
+
+        .element-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .element-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .element-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .atomic-number {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 10px;
+            animation: number-pulse 2s infinite;
+        }
+
+        .element-symbol {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .element-name {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Electronic configuration section */
+        .electron-config-section {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: #333;
+        }
+
+        .energy-levels {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            margin: 30px 0;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .energy-level {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-width: 120px;
+            position: relative;
+        }
+
+        .energy-level:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .level-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .level-number {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 10px;
+        }
+
+        .max-electrons {
+            font-size: 1.5rem;
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        .formula {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Interactive calculator */
+        .calculator-section {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .calculator {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .result {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+            min-height: 60px;
+        }
+
+        /* Analogies */
+        .analogy-section {
+            background: linear-gradient(45deg, #84fab0, #8fd3f4);
+            color: #333;
+        }
+
+        .analogy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .analogy-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .analogy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .analogy-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 15px;
+            animation: wiggle 3s infinite;
+        }
+
+        /* Navigation */
+        .lesson-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .nav-button {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Animations */
+        @keyframes rainbow-text {
+            0% { color: #ff6b6b; }
+            16% { color: #ffa500; }
+            32% { color: #ffff00; }
+            48% { color: #00ff00; }
+            64% { color: #0080ff; }
+            80% { color: #8b00ff; }
+            100% { color: #ff6b6b; }
+        }
+
+        @keyframes float-around {
+            0% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-30px) rotate(90deg); }
+            50% { transform: translateY(0px) rotate(180deg); }
+            75% { transform: translateY(30px) rotate(270deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+
+        @keyframes slide-in {
+            from {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes nutrient-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes nucleus-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(255, 107, 107, 0.8); }
+        }
+
+        @keyframes orbit-rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes electron-glow {
+            0% { box-shadow: 0 0 10px rgba(78, 205, 196, 0.8); }
+            100% { box-shadow: 0 0 20px rgba(78, 205, 196, 1); }
+        }
+
+        @keyframes number-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes shine {
+            0% { left: -50%; top: -50%; }
+            100% { left: 150%; top: 150%; }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .atom-demo {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .energy-levels {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating numbers background -->
+    <div class="floating-numbers">
+        <div class="floating-number">1</div>
+        <div class="floating-number">2</div>
+        <div class="floating-number">8</div>
+        <div class="floating-number">18</div>
+        <div class="floating-number">2n²</div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🔢 Atomic Numbers & Electronic Configuration!</h1>
+            <p>Let's discover the atom's secret address system and electron neighborhoods!</p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="lesson-navigation">
+            <button class="nav-button" onclick="goBack()">← Previous Page</button>
+            <span style="color: white; font-weight: bold;">Page 4 Explanation</span>
+            <button class="nav-button" onclick="nextPage()">Next Page →</button>
+        </div>
+
+        <!-- NPK Fertilizers Section -->
+        <div class="content-section fertilizer-section">
+            <div class="section-title">
+                <div class="section-icon">🌱</div>
+                NPK Fertilizers: Plant Food Magic!
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 15px; margin: 20px 0;">
+                <h3>🌟 What Are Fertilizers?</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6;">
+                    Think of fertilizers like vitamins for plants! Just like you need different nutrients to grow strong, 
+                    plants need special "plant vitamins" called NPK to grow healthy and strong! 🌿
+                </p>
+            </div>
+            
+            <div class="npk-grid">
+                <div class="nutrient-card" onclick="explainNutrient('N', 'Nitrogen', 'Makes leaves super green!', 'Like protein for plant muscles! 💪')">
+                    <div class="nutrient-symbol nitrogen">N</div>
+                    <h3>Nitrogen</h3>
+                    <p><strong>Job:</strong> Makes leaves GREEN! 🍃</p>
+                    <div style="margin-top: 15px; padding: 10px; background: rgba(46, 204, 113, 0.1); border-radius: 10px;">
+                        <small>Click to learn more!</small>
+                    </div>
+                </div>
+                
+                <div class="nutrient-card" onclick="explainNutrient('P', 'Phosphorus', 'Builds strong roots!', 'Like calcium for plant bones! 🦴')">
+                    <div class="nutrient-symbol phosphorus">P</div>
+                    <h3>Phosphorus</h3>
+                    <p><strong>Job:</strong> Builds STRONG roots! 🌱</p>
+                    <div style="margin-top: 15px; padding: 10px; background: rgba(231, 76, 60, 0.1); border-radius: 10px;">
+                        <small>Click to learn more!</small>
+                    </div>
+                </div>
+                
+                <div class="nutrient-card" onclick="explainNutrient('K', 'Potassium', 'Keeps plants healthy!', 'Like vitamins for plant immunity! 🛡️')">
+                    <div class="nutrient-symbol potassium">K</div>
+                    <h3>Potassium</h3>
+                    <p><strong>Job:</strong> Keeps plants HEALTHY! 💪</p>
+                    <div style="margin-top: 15px; padding: 10px; background: rgba(243, 156, 18, 0.1); border-radius: 10px;">
+                        <small>Click to learn more!</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="nutrient-explanation" style="margin-top: 25px; padding: 20px; background: rgba(255,255,255,0.2); border-radius: 15px; min-height: 60px; text-align: center;">
+                Click on any nutrient above to learn how it helps plants grow! 🌟
+            </div>
+            
+            <div style="background: rgba(255, 255, 255, 0.9); color: #333; padding: 20px; border-radius: 15px; margin-top: 20px;">
+                <h4>⚠️ Important Plant Safety Rule!</h4>
+                <p>Just like eating too much candy can make you sick, giving plants too much fertilizer can hurt them! 
+                We need to give them just the right amount - like a balanced diet! 🍎⚖️</p>
+            </div>
+        </div>
+
+        <!-- Analogies Section -->
+        <div class="content-section analogy-section">
+            <div class="section-title">
+                <div class="section-icon">🎭</div>
+                Understanding Atoms Through Fun Analogies!
+            </div>
+            
+            <div class="analogy-grid">
+                <div class="analogy-card">
+                    <div class="analogy-icon">🏠</div>
+                    <h3>Atomic Number = House Address</h3>
+                    <p>Just like every house has a unique address (like 123 Main Street), 
+                    every element has a unique atomic number! It tells us exactly which element we're talking about!</p>
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 8px; margin-top: 10px;">
+                        <strong>Example:</strong> Hydrogen is always #1, Helium is always #2!
+                    </div>
+                </div>
+                
+                <div class="analogy-card">
+                    <div class="analogy-icon">🏫</div>
+                    <h3>Energy Levels = School Floors</h3>
+                    <p>Think of an atom like a school building! Electrons live on different floors (energy levels). 
+                    The first floor is closest to the principal's office (nucleus)!</p>
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 8px; margin-top: 10px;">
+                        <strong>Rule:</strong> Fill the first floor before moving to the second!
+                    </div>
+                </div>
+                
+                <div class="analogy-card">
+                    <div class="analogy-icon">🎪</div>
+                    <h3>Electrons = Circus Performers</h3>
+                    <p>Electrons are like circus performers dancing around the center ring! 
+                    They have special energy levels where they perform their amazing tricks!</p>
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 8px; margin-top: 10px;">
+                        <strong>Fun Fact:</strong> They never stop moving - they're always dancing! 💃
+                    </div>
+                </div>
+                
+                <div class="analogy-card">
+                    <div class="analogy-icon">🍰</div>
+                    <h3>Mass Number = Layer Cake</h3>
+                    <p>Mass number is like counting all the layers in a cake! 
+                    You count the proton layers PLUS the neutron layers in the nucleus!</p>
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 8px; margin-top: 10px;">
+                        <strong>Recipe:</strong> Protons + Neutrons = Mass Number! 🧮
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Atomic Number Section -->
+        <div class="content-section atomic-section">
+            <div class="section-title">
+                <div class="section-icon">🏠</div>
+                Atomic Number: Every Element's Special ID Card!
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px; margin: 20px 0;">
+                <h3>🆔 What is an Atomic Number?</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6;">
+                    The atomic number is like an ID card for each element! It tells us exactly how many protons 
+                    are living in the nucleus (the center) of that element's atoms. No two elements can have the same atomic number!
+                </p>
+            </div>
+            
+            <div class="atom-demo">
+                <div class="interactive-atom" onclick="animateAtom(this, 1)">
+                    <div class="electron-orbit orbit-1">
+                        <div class="electron"></div>
+                    </div>
+                    <div class="nucleus">H<br>1</div>
+                    <div style="text-align: center; margin-top: 120px;">
+                        <h4>Hydrogen</h4>
+                        <p>Atomic # = 1</p>
+                    </div>
+                </div>
+                
+                <div class="interactive-atom" onclick="animateAtom(this, 2)">
+                    <div class="electron-orbit orbit-1">
+                        <div class="electron"></div>
+                        <div class="electron" style="top: 50%; left: -6px; animation-delay: 0.5s;"></div>
+                    </div>
+                    <div class="nucleus">He<br>2</div>
+                    <div style="text-align: center; margin-top: 120px;">
+                        <h4>Helium</h4>
+                        <p>Atomic # = 2</p>
+                    </div>
+                </div>
+                
+                <div class="interactive-atom" onclick="animateAtom(this, 3)">
+                    <div class="electron-orbit orbit-1">
+                        <div class="electron"></div>
+                        <div class="electron" style="top: 50%; left: -6px; animation-delay: 0.5s;"></div>
+                    </div>
+                    <div class="electron-orbit orbit-2">
+                        <div class="electron"></div>
+                    </div>
+                    <div class="nucleus">Li<br>3</div>
+                    <div style="text-align: center; margin-top: 120px;">
+                        <h4>Lithium</h4>
+                        <p>Atomic # = 3</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; text-align: center;">
+                <h4>🎯 Magic Rule!</h4>
+                <p style="font-size: 1.1rem;">
+                    Atomic Number = Number of Protons = Number of Electrons<br>
+                    (In a neutral atom, they're always equal! ⚖️)
+                </p>
+            </div>
+        </div>
+
+        <!-- Elements Table -->
+        <div class="content-section elements-table">
+            <div class="section-title">
+                <div class="section-icon">📊</div>
+                Famous Elements and Their ID Numbers!
+            </div>
+            
+            <div class="element-grid">
+                <div class="element-card" onclick="explainElement(1, 'H', 'Hydrogen', 'The simplest and lightest element! Found in water! 💧')">
+                    <div class="atomic-number">1</div>
+                    <div class="element-symbol">H</div>
+                    <div class="element-name">Hydrogen</div>
+                </div>
+                
+                <div class="element-card" onclick="explainElement(2, 'He', 'Helium', 'Makes balloons float! 🎈 Used in party balloons!')">
+                    <div class="atomic-number">2</div>
+                    <div class="element-symbol">He</div>
+                    <div class="element-name">Helium</div>
+                </div>
+                
+                <div class="element-card" onclick="explainElement(6, 'C', 'Carbon', 'Found in all living things! Makes diamonds and pencil lead! 💎✏️')">
+                    <div class="atomic-number">6</div>
+                    <div class="element-symbol">C</div>
+                    <div class="element-name">Carbon</div>
+                </div>
+                
+                <div class="element-card" onclick="explainElement(8, 'O', 'Oxygen', 'What you breathe! Keeps you alive! 💨❤️')">
+                    <div class="atomic-number">8</div>
+                    <div class="element-symbol">O</div>
+                    <div class="element-name">Oxygen</div>
+                </div>
+                
+                <div class="element-card" onclick="explainElement(11, 'Na', 'Sodium', 'Found in table salt! Makes food tasty! 🧂')">
+                    <div class="atomic-number">11</div>
+                    <div class="element-symbol">Na</div>
+                    <div class="element-name">Sodium</div>
+                </div>
+                
+                <div class="element-card" onclick="explainElement(26, 'Fe', 'Iron', 'Makes strong steel! Found in your blood! 🩸⚔️')">
+                    <div class="atomic-number">26</div>
+                    <div class="element-symbol">Fe</div>
+                    <div class="element-name">Iron</div>
+                </div>
+            </div>
+            
+            <div id="element-details" style="margin-top: 25px; padding: 20px; background: rgba(255,255,255,0.2); border-radius: 15px; min-height: 60px; text-align: center;">
+                Click on any element above to learn amazing facts about it! 🌟
+            </div>
+        </div>
+
+        <!-- Electronic Configuration Section -->
+        <div class="content-section electron-config-section">
+            <div class="section-title">
+                <div class="section-icon">🏢</div>
+                Electronic Configuration: Electron Apartments!
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.9); color: #333; padding: 25px; border-radius: 15px; margin: 20px 0;">
+                <h3>🏠 What are Energy Levels?</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6;">
+                    Think of energy levels like floors in an apartment building! Electrons live on different floors, 
+                    and each floor can only hold a certain number of electron "residents"! 
+                    They always fill the ground floor first, then move up! 🏢
+                </p>
+            </div>
+            
+            <div class="energy-levels">
+                <div class="energy-level" onclick="explainEnergyLevel('K', 1, 2, '2×1² = 2')">
+                    <div class="level-number">1</div>
+                    <div class="level-name">K</div>
+                    <div class="max-electrons">2</div>
+                    <div class="formula">2n² = 2×1² = 2</div>
+                </div>
+                
+                <div class="energy-level" onclick="explainEnergyLevel('L', 2, 8, '2×2² = 8')" style="height: 180px;">
+                    <div class="level-number">2</div>
+                    <div class="level-name">L</div>
+                    <div class="max-electrons">8</div>
+                    <div class="formula">2n² = 2×2² = 8</div>
+                </div>
+                
+                <div class="energy-level" onclick="explainEnergyLevel('M', 3, 18, '2×3² = 18')" style="height: 220px;">
+                    <div class="level-number">3</div>
+                    <div class="level-name">M</div>
+                    <div class="max-electrons">18</div>
+                    <div class="formula">2n² = 2×3² = 18</div>
+                </div>
+                
+                <div class="energy-level" onclick="explainEnergyLevel('N', 4, 32, '2×4² = 32')" style="height: 260px;">
+                    <div class="level-number">4</div>
+                    <div class="level-name">N</div>
+                    <div class="max-electrons">32</div>
+                    <div class="formula">2n² = 2×4² = 32</div>
+                </div>
+            </div>
+            
+            <div id="energy-explanation" style="margin-top: 25px; padding: 20px; background: rgba(255,255,255,0.9); color: #333; border-radius: 15px; min-height: 60px; text-align: center;">
+                Click on any energy level to learn about that electron "apartment floor"! 🏠
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.9); color: #333; padding: 20px; border-radius: 15px; margin-top: 20px;">
+                <h4>🏗️ Building Rules for Electron Apartments!</h4>
+                <ul style="text-align: left; line-height: 1.8;">
+                    <li>🏠 <strong>Ground floor first:</strong> Always fill level K before level L!</li>
+                    <li>🚪 <strong>Maximum occupancy:</strong> Each level has a maximum number of electrons it can hold!</li>
+                    <li>🏢 <strong>Top floor rule:</strong> The highest floor never has more than 8 electrons (except K can only have 2)!</li>
+                    <li>📐 <strong>Magic formula:</strong> 2n² tells us the maximum for each level!</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Interactive Calculator -->
+        <div class="content-section calculator-section">
+            <div class="section-title">
+                <div class="section-icon">🧮</div>
+                Atomic Calculator: Be a Number Detective!
+            </div>
+            
+            <div class="calculator">
+                <h3 style="text-align: center; margin-bottom: 20px;">🔍 Calculate Atomic Properties!</h3>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div class="input-group">
+                        <label>🔴 Number of Protons:</label>
+                        <input type="number" id="protons" placeholder="Enter protons" min="1" max="118">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>⚪ Number of Neutrons:</label>
+                        <input type="number" id="neutrons" placeholder="Enter neutrons" min="0" max="200">
+                    </div>
+                </div>
+                
+                <button class="calculate-btn" onclick="calculateAtomicProperties()">
+                    🧮 Calculate My Atom!
+                </button>
+                
+                <div id="calculation-result" class="result">
+                    Enter the number of protons and neutrons to discover your atom's secrets! 🔍
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">🎉</div>
+                What You've Learned Today!
+            </div>
+            
+            <div style="background: linear-gradient(45deg, #84fab0, #8fd3f4); color: #333; padding: 25px; border-radius: 15px;">
+                <h3 style="color: #333; margin-bottom: 20px;">🏆 Congratulations! You now understand:</h3>
+                <ul style="list-style-type: none; padding: 0; line-height: 2;">
+                    <li style="padding: 8px 0;">✅ NPK fertilizers help plants grow (like vitamins for plants!)</li>
+                    <li style="padding: 8px 0;">✅ Atomic number = unique ID for each element</li>
+                    <li style="padding: 8px 0;">✅ Energy levels are like apartment floors for electrons</li>
+                    <li style="padding: 8px 0;">✅ Formula 2n² calculates maximum electrons per level</li>
+                    <li style="padding: 8px 0;">✅ Mass number = Protons + Neutrons</li>
+                </ul>
+                
+                <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 5px solid #667eea;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">🚀 Coming Up Next:</h4>
+                    <p style="color: #666;">We'll explore more about electronic configuration and how electrons behave in their energy levels!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Navigation -->
+        <div class="lesson-navigation">
+            <button class="nav-button" onclick="goBack()">← Previous Page</button>
+            <button class="nav-button" onclick="reviewPage()">🔄 Review This Page</button>
+            <button class="nav-button" onclick="nextPage()">Next Page →</button>
+        </div>
+    </div>
+
+    <script>
+        // NPK nutrient explanation
+        function explainNutrient(symbol, name, job, analogy) {
+            const explanation = document.getElementById('nutrient-explanation');
+            explanation.innerHTML = `
+                <div style="animation: slideIn 0.5s ease-out;">
+                    <h2>🌱 ${symbol} - ${name} 🌱</h2>
+                    <div style="font-size: 1.2rem; margin: 15px 0;">
+                        <p><strong>Main Job:</strong> ${job}</p>
+                        <p><strong>Think of it like:</strong> ${analogy}</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.3); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                        <strong>Why Plants Need ${name}:</strong><br>
+                        ${getDetailedNutrientInfo(symbol)}
+                    </div>
+                </div>
+            `;
+            createSparkles(event.target);
+        }
+
+        function getDetailedNutrientInfo(symbol) {
+            const info = {
+                'N': 'Nitrogen is like protein for plants! It helps them build chlorophyll (the green stuff in leaves) so they can make their own food from sunlight! Without nitrogen, plants would be pale and weak! 🍃',
+                'P': 'Phosphorus is like calcium for plant bones! It helps build strong root systems so plants can grab water and nutrients from the soil. It also helps plants make flowers and fruits! 🌸🍎',
+                'K': 'Potassium is like vitamins for plant immunity! It helps plants fight diseases, survive cold weather, and use water efficiently. It makes plants tough and healthy! 💪🛡️'
+            };
+            return info[symbol];
+        }
+
+        // Element explanation
+        function explainElement(atomicNum, symbol, name, fact) {
+            const details = document.getElementById('element-details');
+            details.innerHTML = `
+                <div style="animation: slideIn 0.5s ease-out;">
+                    <h2>🔬 ${symbol} - ${name} 🔬</h2>
+                    <div style="font-size: 1.2rem; margin: 15px 0;">
+                        <p><strong>Atomic Number:</strong> ${atomicNum}</p>
+                        <p><strong>Cool Fact:</strong> ${fact}</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.3); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                        <strong>What this means:</strong> This element has exactly <strong>${atomicNum}</strong> protons in its nucleus, 
+                        and in a neutral atom, it also has <strong>${atomicNum}</strong> electrons dancing around! ⚖️
+                    </div>
+                </div>
+            `;
+            createCelebration();
+        }
+
+        // Energy level explanation
+        function explainEnergyLevel(level, n, maxElectrons, formula) {
+            const explanation = document.getElementById('energy-explanation');
+            explanation.innerHTML = `
+                <div style="animation: slideIn 0.5s ease-out;">
+                    <h2>🏢 Energy Level ${level} (Floor ${n}) 🏢</h2>
+                    <div style="font-size: 1.1rem; margin: 15px 0;">
+                        <p><strong>Floor Number:</strong> ${n}</p>
+                        <p><strong>Maximum Residents:</strong> ${maxElectrons} electrons</p>
+                        <p><strong>Calculation:</strong> ${formula}</p>
+                    </div>
+                    <div style="background: rgba(102, 126, 234, 0.2); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                        <strong>🏠 Apartment Building Analogy:</strong><br>
+                        This is like floor #${n} in our electron apartment building! 
+                        It can hold up to ${maxElectrons} electron residents. 
+                        ${n === 1 ? "It's the ground floor - closest to the nucleus (building manager)!" : 
+                          n === 2 ? "It's the second floor - still pretty close to the action!" :
+                          "It's a higher floor - farther from the nucleus but with more space!"}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Atom animation
+        function animateAtom(atom, atomicNumber) {
+            const electrons = atom.querySelectorAll('.electron');
+            const nucleus = atom.querySelector('.nucleus');
+            
+            // Animate electrons
+            electrons.forEach((electron, index) => {
+                electron.style.animationDuration = '0.5s';
+                electron.style.transform = `translateX(-50%) scale(1.5)`;
+                electron.style.backgroundColor = '#ffd700';
+                
+                setTimeout(() => {
+                    electron.style.animationDuration = '2s';
+                    electron.style.transform = 'translateX(-50%) scale(1)';
+                    electron.style.backgroundColor = '';
+                }, 1000);
+            });
+            
+            // Animate nucleus
+            nucleus.style.animation = 'nucleus-glow 0.5s infinite, bounce 0.5s';
+            
+            setTimeout(() => {
+                nucleus.style.animation = 'nucleus-glow 2s infinite';
+            }, 1000);
+            
+            // Show atomic info
+            showAtomicInfo(atomicNumber);
+        }
+
+        function showAtomicInfo(atomicNumber) {
+            const info = {
+                1: "Hydrogen: The simplest atom! Just 1 proton and 1 electron! 🌟",
+                2: "Helium: 2 protons, 2 electrons! Makes balloons float! 🎈",
+                3: "Lithium: 3 protons, 3 electrons! Used in phone batteries! 📱"
+            };
+            
+            alert(`🎉 ${info[atomicNumber]} 🎉`);
+        }
+
+        // Calculator function
+        function calculateAtomicProperties() {
+            const protons = parseInt(document.getElementById('protons').value);
+            const neutrons = parseInt(document.getElementById('neutrons').value);
+            const result = document.getElementById('calculation-result');
+            
+            if (!protons || protons < 1) {
+                result.innerHTML = `
+                    <div style="color: #ff6b6b;">
+                        ❌ Please enter a valid number of protons! (Must be at least 1)
+                    </div>
+                `;
+                return;
+            }
+            
+            if (neutrons < 0) {
+                result.innerHTML = `
+                    <div style="color: #ff6b6b;">
+                        ❌ Please enter a valid number of neutrons! (Cannot be negative)
+                    </div>
+                `;
+                return;
+            }
+            
+            const atomicNumber = protons;
+            const electrons = protons; // In neutral atom
+            const massNumber = protons + neutrons;
+            
+            // Get element name if known
+            const elementNames = {
+                1: 'Hydrogen', 2: 'Helium', 3: 'Lithium', 4: 'Beryllium', 5: 'Boron',
+                6: 'Carbon', 7: 'Nitrogen', 8: 'Oxygen', 9: 'Fluorine', 10: 'Neon',
+                11: 'Sodium', 12: 'Magnesium', 13: 'Aluminum', 14: 'Silicon', 15: 'Phosphorus',
+                16: 'Sulfur', 17: 'Chlorine', 18: 'Argon', 19: 'Potassium', 20: 'Calcium'
+            };
+            
+            const elementName = elementNames[atomicNumber] || `Unknown Element #${atomicNumber}`;
+            
+            result.innerHTML = `
+                <div style="animation: slideIn 0.5s ease-out;">
+                    <h3>🎉 Your Atom Results! 🎉</h3>
+                    <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 10px 0;">
+                        <p><strong>🏠 Element:</strong> ${elementName}</p>
+                        <p><strong>🆔 Atomic Number:</strong> ${atomicNumber}</p>
+                        <p><strong>⚖️ Mass Number:</strong> ${massNumber}</p>
+                        <p><strong>🔴 Protons:</strong> ${protons}</p>
+                        <p><strong>⚪ Neutrons:</strong> ${neutrons}</p>
+                        <p><strong>🔵 Electrons:</strong> ${electrons}</p>
+                    </div>
+                    <div style="background: rgba(78, 205, 196, 0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                        <strong>🧮 Formula Check:</strong><br>
+                        Mass Number = Protons + Neutrons = ${protons} + ${neutrons} = ${massNumber} ✅
+                    </div>
+                </div>
+            `;
+            
+            createCelebration();
+        }
+
+        // Animation helper functions
+        function createSparkles(element) {
+            for (let i = 0; i < 5; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = '✨';
+                sparkle.style.position = 'absolute';
+                sparkle.style.fontSize = '1.5rem';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.animation = `sparkle 1s ease-out forwards`;
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                
+                element.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        }
+
+        function createCelebration() {
+            const confettiColors = ['🎉', '🌟', '⭐', '🎊', '✨'];
+            for (let i = 0; i < 10; i++) {
+                const confetti = document.createElement('div');
+                confetti.innerHTML = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                confetti.style.position = 'fixed';
+                confetti.style.fontSize = '2rem';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.zIndex = '9999';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = '-50px';
+                confetti.style.animation = `confetti-fall 3s ease-in forwards`;
+                
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        // Navigation functions
+        function goBack() {
+            window.location.href = 'Page_3_Chemical_Symbols_Fun.html';
+        }
+
+        function nextPage() {
+            alert('🚀 Awesome work! You\'re ready for the next page about electronic configuration details!');
+        }
+
+        function reviewPage() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.animation = 'pulse-glow 1s ease-in-out';
+                }, index * 500);
+            });
+        }
+
+        // Add additional CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkle {
+                0% { transform: scale(0) rotate(0deg); opacity: 1; }
+                50% { transform: scale(1.2) rotate(180deg); opacity: 0.8; }
+                100% { transform: scale(0) rotate(360deg); opacity: 0; }
+            }
+            
+            @keyframes confetti-fall {
+                0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+            }
+            
+            @keyframes pulse-glow {
+                0%, 100% { 
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                    transform: scale(1);
+                }
+                50% { 
+                    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+                    transform: scale(1.02);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(50px)';
+                
+                setTimeout(() => {
+                    section.style.transition = 'all 0.8s ease-out';
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
