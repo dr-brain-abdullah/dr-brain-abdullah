@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏢 Page 8: Periodic Table Blocks - The Neighborhoods of Elements!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.2); }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.4), 0 0 30px rgba(255,255,255,0.2); }
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: float 10s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-25px) rotate(90deg); }
+            50% { transform: translateY(-10px) rotate(180deg); }
+            75% { transform: translateY(-20px) rotate(270deg); }
+        }
+
+        .lesson-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-button {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .section-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .analogy-box {
+            background: linear-gradient(135deg, #ff9ff3, #54a0ff);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .neighborhood-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .neighborhood-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .neighborhood-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            animation: slideBar 4s infinite;
+        }
+
+        .s-block::before {
+            background: linear-gradient(90deg, #ff6b6b, #feca57);
+        }
+
+        .d-block::before {
+            background: linear-gradient(90deg, #54a0ff, #5f27cd);
+        }
+
+        .p-block::before {
+            background: linear-gradient(90deg, #2ed573, #1e90ff);
+        }
+
+        @keyframes slideBar {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .neighborhood-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .neighborhood-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            animation: wiggle 3s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+
+        .neighborhood-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #feca57;
+        }
+
+        .neighborhood-description {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .neighborhood-properties {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .property-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .property-item:last-child {
+            border-bottom: none;
+        }
+
+        .property-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .city-planning-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .district-map {
+            display: grid;
+            grid-template-columns: 1fr 3fr 2fr;
+            gap: 20px;
+            margin: 30px 0;
+            min-height: 300px;
+            position: relative;
+        }
+
+        .district {
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .s-district {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+        }
+
+        .d-district {
+            background: linear-gradient(135deg, #54a0ff, #5f27cd);
+        }
+
+        .p-district {
+            background: linear-gradient(135deg, #2ed573, #1e90ff);
+        }
+
+        .district:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .district-label {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .district-info {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .electron-configuration-demo {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .electron-shells {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .shell {
+            width: 80px;
+            height: 80px;
+            border: 3px solid rgba(255,255,255,0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+            animation: orbit 4s linear infinite;
+        }
+
+        @keyframes orbit {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .electron {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #feca57;
+            border-radius: 50%;
+            animation: electron-spin 2s linear infinite;
+        }
+
+        @keyframes electron-spin {
+            0% { transform: translateX(-40px) rotate(0deg); }
+            100% { transform: translateX(-40px) rotate(360deg); }
+        }
+
+        .physical-states-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .state-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .state-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .state-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .state-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #feca57;
+        }
+
+        .state-count {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #54a0ff;
+            margin: 10px 0;
+        }
+
+        .element-examples {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .element-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .interactive-table {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .mini-periodic-table {
+            display: grid;
+            grid-template-columns: repeat(18, 1fr);
+            gap: 2px;
+            margin: 20px 0;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .mini-element {
+            aspect-ratio: 1;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 35px;
+            font-weight: bold;
+        }
+
+        .mini-element:hover {
+            transform: scale(1.2);
+            z-index: 10;
+        }
+
+        .s-element {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+        }
+
+        .d-element {
+            background: linear-gradient(45deg, #54a0ff, #5f27cd);
+        }
+
+        .p-element {
+            background: linear-gradient(45deg, #2ed573, #1e90ff);
+        }
+
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .quiz-question {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .quiz-option.correct {
+            background: rgba(46, 213, 115, 0.3);
+            border-color: #2ed573;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(255, 107, 107, 0.3);
+            border-color: #ff6b6b;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 40px;
+            border-top: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .teacher-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .teacher-detail {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        .teacher-icon {
+            font-size: 1.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .district-map {
+                grid-template-columns: 1fr;
+            }
+            
+            .neighborhood-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mini-periodic-table {
+                grid-template-columns: repeat(9, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements Background -->
+    <div class="floating-elements">
+        <div class="floating-element" style="left: 5%; animation-delay: 0s;">🏘️</div>
+        <div class="floating-element" style="left: 15%; animation-delay: 1s;">🏢</div>
+        <div class="floating-element" style="left: 25%; animation-delay: 2s;">🏠</div>
+        <div class="floating-element" style="left: 35%; animation-delay: 3s;">🏪</div>
+        <div class="floating-element" style="left: 45%; animation-delay: 4s;">🏭</div>
+        <div class="floating-element" style="left: 55%; animation-delay: 5s;">🏦</div>
+        <div class="floating-element" style="left: 65%; animation-delay: 0.5s;">🏬</div>
+        <div class="floating-element" style="left: 75%; animation-delay: 1.5s;">🏰</div>
+        <div class="floating-element" style="left: 85%; animation-delay: 2.5s;">🌆</div>
+        <div class="floating-element" style="left: 95%; animation-delay: 3.5s;">🌃</div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🏢 Periodic Table Blocks: Element Neighborhoods!</h1>
+            <p>Discover how elements live in different neighborhoods based on their electron personalities!</p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="lesson-navigation">
+            <button class="nav-button" onclick="goBack()">← Back to Unit</button>
+            <span style="color: white; font-weight: bold;">Page 8 Explanation</span>
+            <button class="nav-button" onclick="nextPage()">Next Page →</button>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">🏙️</div>
+                Welcome to Element City!
+            </div>
+            
+            <div class="analogy-box">
+                <h3>🏙️ The Periodic Table is Like a Big City!</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6; margin: 15px 0;">
+                    Imagine the periodic table as a huge city where elements live! Just like how people with similar 
+                    lifestyles live in the same neighborhoods, elements with similar properties live in the same 
+                    "blocks"! There are three main neighborhoods: S-Block, D-Block, and P-Block! 🏘️
+                </p>
+                <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px; margin: 15px 0;">
+                    <h4 style="color: #feca57; margin-bottom: 10px;">🗺️ City Planning Rules:</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 5px 0;">🏠 <strong>S-Block</strong> = Quiet residential area (Groups 1A & 2A)</li>
+                        <li style="padding: 5px 0;">🏢 <strong>D-Block</strong> = Business district (Transition metals)</li>
+                        <li style="padding: 5px 0;">🏪 <strong>P-Block</strong> = Shopping & entertainment (Groups 3A-8A)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- City Planning Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">🗺️</div>
+                Element City Map
+            </div>
+            
+            <div class="city-planning-section">
+                <h3 style="text-align: center; margin-bottom: 20px;">🏙️ How Element City is Organized</h3>
+                
+                <div class="district-map">
+                    <div class="district s-district" onclick="exploreDistrict('s')">
+                        <div class="district-label">S-Block</div>
+                        <div class="district-info">
+                            🏠 Residential<br>
+                            Groups 1A & 2A<br>
+                            Quiet & Predictable
+                        </div>
+                    </div>
+                    
+                    <div class="district d-district" onclick="exploreDistrict('d')">
+                        <div class="district-label">D-Block</div>
+                        <div class="district-info">
+                            🏢 Business District<br>
+                            Transition Metals<br>
+                            Busy & Colorful
+                        </div>
+                    </div>
+                    
+                    <div class="district p-district" onclick="exploreDistrict('p')">
+                        <div class="district-label">P-Block</div>
+                        <div class="district-info">
+                            🏪 Shopping District<br>
+                            Groups 3A to 8A<br>
+                            Diverse & Exciting
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; margin-top: 20px;">
+                    <h4 style="color: #feca57; text-align: center; margin-bottom: 15px;">🎯 Click any district above to explore!</h4>
+                    <p style="text-align: center; font-size: 1.1rem;">
+                        Each neighborhood has its own personality based on how electrons behave in their outer shells!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Neighborhood Details -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">🏘️</div>
+                Neighborhood Profiles
+            </div>
+            
+            <div class="neighborhood-grid">
+                <!-- S-Block Neighborhood -->
+                <div class="neighborhood-card s-block" onclick="showNeighborhoodDetails('s')">
+                    <div class="neighborhood-icon">🏠</div>
+                    <div class="neighborhood-name">S-Block: The Quiet Suburbs</div>
+                    <div class="neighborhood-description">
+                        Like a peaceful suburban neighborhood where families live! These elements are predictable 
+                        and like to follow the rules.
+                    </div>
+                    
+                    <div class="neighborhood-properties">
+                        <div class="property-item">
+                            <div class="property-icon">📍</div>
+                            <span>Located on the LEFT side of periodic table</span>
+                        </div>
+                        <div class="property-item">
+                            <div class="property-icon">👨‍👩‍👧‍👦</div>
+                            <span>Contains Groups 1A and 2A</span>
+                        </div>
+                        <div class="property-item">
+                            <div class="property-icon">🏠</div>
+                            <span>Mostly metals (except Hydrogen gas)</span>
+                        </div>
+                        <div class="property-item">
+                            <div class="property-icon">⚛️</div>
+                            <span>Electrons end with 1 or 2 in outer shell</span>
+                        </div>
+                        <div class="property-item">
+                            <div class="property-icon">💧</div>
+                            <span>Group 1A = Alkali metals (react with water!)</span>
+                        </div>
+                        <div class="property-item">
+                            <div class="property-icon">🌍</div>
+                            <span>Group 2A = Alkaline earth metals</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- D-Block Neighborhood -->
+                <div class="neighborhood-card d-block" onclick="showNeighborhoodDetails('d')">
+                    <div class="neighborhood-icon">🏢</div>
+                    <div class="neighborhood-name">D-Block: The Business District</div>
+                    <div class="neighborhood-description">
+                        Like a busy downtown area full of office buildings! These transition metals are hardworking 
+                        and can do many different jobs.
+                    </div>
+                    
+                    <div class="neighborhood-properties">
+                        <div class="property-item">
+                            <div class="property-icon">📍</div>
+                            <span>Located in the MIDDLE of periodic table</span>
+                        </div>
+                        <div class="property-item">
+                            <div class="property-icon">🏢</div>
+                            <span>Contains 10 groups (3B to 2B)</span>
+                        </div>
+                        <div class="property-item">
+                            <div class="property-icon">🔗</div>
+                            <span>ALL are transition metals</span>
+                        </div>
+                        <div class="property-item">
+                            <div class="property-icon">📊</div>
+                            <span>Start appearing in Period 4</span>
+                        </div>
+                        <div class="property-item">
+                            <div class="property-icon">🌈</div>
+                            <span>Often make colorful compounds</span>
+                        </div>
+                        <div class="property-item">
+                            <div class="property-icon">💪</div>
+                            <span>Strong, hard metals (like steel!)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- P-Block Neighborhood -->
+                <div class="neighborhood-card p-block" onclick="showNeighborhoodDetails('p')">
+                    <div class="neighborhood-icon">🏪</div>
+                    <div class="neighborhood-name">P-Block: The Shopping District</div>
+                    <div class="neighborhood-description">
+                        Like a diverse shopping and entertainment area! This neighborhood has everything - 
+                        gases, metals, non-metals, and even noble gases!
+                    </div>
+                    
+                    <div class="neighborhood-properties">
+                        <div class="property-item">
+                            <div class="property-icon">📍</div>
+                            <span>Located on the RIGHT side of periodic table</span>
+                        </div>
+                        <div class="property-item">
+                            <div class="property-icon">🛍️</div>
+                            <span>Contains 6 groups (3A to 8A)</span>
+                        </div>
+                        <div class="property-item">
+                            <div class="property-icon">🎭</div>
+                            <span>Most diverse: metals, non-metals, gases</span>
+                        </div>
+                        <div class="property-item">
+                            <div class="property-icon">⚛️</div>
+                            <span>Electrons end with 3, 4, 5, 6, 7, or 8</span>
+                        </div>
+                        <div class="property-item">
+                            <div class="property-icon">💨</div>
+                            <span>Includes all noble gases (Group 8A)</span>
+                        </div>
+                        <div class="property-item">
+                            <div class="property-icon">⚗️</div>
+                            <span>Contains halogens (Group 7A) - very reactive!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Physical States Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">🌡️</div>
+                Element States: Solid, Liquid, or Gas?
+            </div>
+            
+            <div class="analogy-box">
+                <h3>🏠 Think of Elements Like Different Types of Buildings!</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6; margin: 15px 0;">
+                    Just like buildings can be houses (solid), water features (liquid), or open spaces (gas), 
+                    elements exist in different physical states at room temperature! Most are solid like sturdy houses! 🏠
+                </p>
+            </div>
+            
+            <div class="physical-states-section">
+                <div class="state-card">
+                    <div class="state-icon">🏗️</div>
+                    <div class="state-title">Solid Elements</div>
+                    <div class="state-count">105+</div>
+                    <p>Like sturdy buildings - most elements are solid!</p>
+                    <div class="element-examples">
+                        <div class="element-tag">Iron (Fe)</div>
+                        <div class="element-tag">Gold (Au)</div>
+                        <div class="element-tag">Carbon (C)</div>
+                        <div class="element-tag">Sodium (Na)</div>
+                        <div class="element-tag">Aluminum (Al)</div>
+                    </div>
+                </div>
+                
+                <div class="state-card">
+                    <div class="state-icon">💧</div>
+                    <div class="state-title">Liquid Elements</div>
+                    <div class="state-count">2</div>
+                    <p>Like water features - very rare!</p>
+                    <div class="element-examples">
+                        <div class="element-tag">Mercury (Hg) - Metal</div>
+                        <div class="element-tag">Bromine (Br) - Non-metal</div>
+                    </div>
+                    <div style="margin-top: 15px; background: rgba(255,255,255,0.2); padding: 10px; border-radius: 10px;">
+                        <strong>Fun Fact:</strong> Mercury is the only liquid metal at room temperature! 🌡️
+                    </div>
+                </div>
+                
+                <div class="state-card">
+                    <div class="state-icon">💨</div>
+                    <div class="state-title">Gas Elements</div>
+                    <div class="state-count">11</div>
+                    <p>Like open air spaces - light and free!</p>
+                    <div style="margin: 15px 0;">
+                        <h4 style="color: #feca57;">🌟 Noble Gases (6):</h4>
+                        <div class="element-examples">
+                            <div class="element-tag">Helium (He)</div>
+                            <div class="element-tag">Neon (Ne)</div>
+                            <div class="element-tag">Argon (Ar)</div>
+                            <div class="element-tag">Krypton (Kr)</div>
+                            <div class="element-tag">Xenon (Xe)</div>
+                            <div class="element-tag">Radon (Rn)</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 style="color: #54a0ff;">⚗️ Other Gases (5):</h4>
+                        <div class="element-examples">
+                            <div class="element-tag">Hydrogen (H)</div>
+                            <div class="element-tag">Nitrogen (N)</div>
+                            <div class="element-tag">Oxygen (O)</div>
+                            <div class="element-tag">Fluorine (F)</div>
+                            <div class="element-tag">Chlorine (Cl)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Electron Configuration -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">⚛️</div>
+                Electron Neighborhoods: Where Do They Live?
+            </div>
+            
+            <div class="analogy-box">
+                <h3>🎒 Think of Electron Shells Like School Backpack Pockets!</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6; margin: 15px 0;">
+                    Just like how you organize your school supplies in different pockets of your backpack, 
+                    electrons live in different "shells" around the atom! The outermost pocket determines 
+                    which neighborhood (block) the element lives in! 🎒
+                </p>
+            </div>
+            
+            <div class="electron-configuration-demo">
+                <h3 style="text-align: center; margin-bottom: 20px;">🎯 Electron Shell Demonstration</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: rgba(255,107,107,0.2); padding: 20px; border-radius: 15px;">
+                        <h4 style="color: #ff6b6b; text-align: center;">S-Block Example: Sodium (Na)</h4>
+                        <div style="text-align: center; margin: 15px 0;">
+                            <div style="font-size: 1.1rem;">K: 2, L: 8, M: 1</div>
+                            <div style="margin: 10px 0; color: #feca57;">⚛️ Outermost shell has 1 electron</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(84,160,255,0.2); padding: 20px; border-radius: 15px;">
+                        <h4 style="color: #54a0ff; text-align: center;">D-Block Example: Iron (Fe)</h4>
+                        <div style="text-align: center; margin: 15px 0;">
+                            <div style="font-size: 1.1rem;">Complex d-orbital filling</div>
+                            <div style="margin: 10px 0; color: #feca57;">⚛️ Transition metal behavior</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(46,213,115,0.2); padding: 20px; border-radius: 15px;">
+                        <h4 style="color: #2ed573; text-align: center;">P-Block Example: Chlorine (Cl)</h4>
+                        <div style="text-align: center; margin: 15px 0;">
+                            <div style="font-size: 1.1rem;">K: 2, L: 8, M: 7</div>
+                            <div style="margin: 10px 0; color: #feca57;">⚛️ Outermost shell has 7 electrons</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Mini Periodic Table -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">🗂️</div>
+                Interactive Block Explorer
+            </div>
+            
+            <div class="interactive-table">
+                <h3 style="margin-bottom: 20px;">🎮 Click elements to see which block they belong to!</h3>
+                <p style="margin-bottom: 20px; color: #feca57;">Color Code: 🟡 S-Block | 🔵 D-Block | 🟢 P-Block</p>
+                
+                <div class="mini-periodic-table" id="miniPeriodicTable">
+                    <!-- This will be populated by JavaScript -->
+                </div>
+                
+                <div id="blockInfo" style="margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.2); border-radius: 15px; min-height: 80px;">
+                    <p style="font-size: 1.2rem; color: #feca57;">👆 Click any element above to discover which neighborhood it lives in!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sports Team Analogy -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">⚽</div>
+                The Soccer League Analogy
+            </div>
+            
+            <div class="analogy-box">
+                <h3>⚽ Element Blocks = Different Soccer Leagues!</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6; margin: 15px 0;">
+                    Think of the periodic table blocks like different soccer leagues with their own playing styles! 🏆
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0;">
+                    <div style="background: rgba(255,107,107,0.2); padding: 20px; border-radius: 10px;">
+                        <h4 style="color: #ff6b6b;">🥅 S-Block = Youth League</h4>
+                        <p>Simple, predictable plays<br>Easy to understand<br>Like beginner players! ⚽</p>
+                    </div>
+                    <div style="background: rgba(84,160,255,0.2); padding: 20px; border-radius: 10px;">
+                        <h4 style="color: #54a0ff;">🏆 D-Block = Professional League</h4>
+                        <p>Complex strategies<br>Many different skills<br>Like expert players! 🌟</p>
+                    </div>
+                    <div style="background: rgba(46,213,115,0.2); padding: 20px; border-radius: 10px;">
+                        <h4 style="color: #2ed573;">🎪 P-Block = Mixed League</h4>
+                        <p>All skill levels<br>Very diverse<br>Something for everyone! 🎭</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">🎯</div>
+                Test Your Block Knowledge!
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    🤔 Which block contains the alkali metals (like sodium)?
+                </div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">
+                        S-Block
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        D-Block
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        P-Block
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">
+                        F-Block
+                    </div>
+                </div>
+                <div id="quiz-feedback" style="margin-top: 20px; font-weight: bold; text-align: center;"></div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="content-section">
+            <div class="section-title">
+                <div class="section-icon">📝</div>
+                What We've Learned About Element Blocks!
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 15px;">
+                <h3>🌟 Block Summary:</h3>
+                <ul style="list-style: none; padding: 0; margin: 20px 0; line-height: 1.8;">
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ Periodic table has 3 main neighborhoods (blocks)</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ S-Block = Left side, Groups 1A & 2A, mostly metals</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ D-Block = Middle, transition metals, very strong</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ P-Block = Right side, most diverse neighborhood</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ Most elements are solid, only 2 liquids, 11 gases</li>
+                    <li style="padding: 8px 0; font-size: 1.1rem;">✅ Electron configuration determines which block!</li>
+                </ul>
+                
+                <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 5px solid #667eea;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">🚀 Coming Up Next:</h4>
+                    <p style="color: #666;">Next, we'll explore specific groups and their amazing properties!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Navigation -->
+        <div class="lesson-navigation">
+            <button class="nav-button" onclick="goBack()">← Previous Page</button>
+            <button class="nav-button" onclick="reviewPage()">🔄 Review This Page</button>
+            <button class="nav-button" onclick="nextPage()">Next Page →</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="teacher-info">
+            <div class="teacher-detail">
+                <div class="teacher-icon">👨‍🏫</div>
+                <span>Mr: Abdullah Mostafa</span>
+            </div>
+            <div class="teacher-detail">
+                <div class="teacher-icon">📱</div>
+                <span>01155205311</span>
+            </div>
+            <div class="teacher-detail">
+                <div class="teacher-icon">📧</div>
+                <span>ABmostafa28@gmail.com</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create mini periodic table with blocks
+        function createMiniPeriodicTable() {
+            const table = document.getElementById('miniPeriodicTable');
+            const elements = [
+                // Period 1
+                {symbol: 'H', number: 1, name: 'Hydrogen', block: 's', group: '1A'},
+                ...Array(16).fill(null),
+                {symbol: 'He', number: 2, name: 'Helium', block: 'p', group: '8A'},
+                
+                // Period 2
+                {symbol: 'Li', number: 3, name: 'Lithium', block: 's', group: '1A'},
+                {symbol: 'Be', number: 4, name: 'Beryllium', block: 's', group: '2A'},
+                ...Array(10).fill(null),
+                {symbol: 'B', number: 5, name: 'Boron', block: 'p', group: '3A'},
+                {symbol: 'C', number: 6, name: 'Carbon', block: 'p', group: '4A'},
+                {symbol: 'N', number: 7, name: 'Nitrogen', block: 'p', group: '5A'},
+                {symbol: 'O', number: 8, name: 'Oxygen', block: 'p', group: '6A'},
+                {symbol: 'F', number: 9, name: 'Fluorine', block: 'p', group: '7A'},
+                {symbol: 'Ne', number: 10, name: 'Neon', block: 'p', group: '8A'},
+                
+                // Period 3
+                {symbol: 'Na', number: 11, name: 'Sodium', block: 's', group: '1A'},
+                {symbol: 'Mg', number: 12, name: 'Magnesium', block: 's', group: '2A'},
+                ...Array(10).fill(null),
+                {symbol: 'Al', number: 13, name: 'Aluminum', block: 'p', group: '3A'},
+                {symbol: 'Si', number: 14, name: 'Silicon', block: 'p', group: '4A'},
+                {symbol: 'P', number: 15, name: 'Phosphorus', block: 'p', group: '5A'},
+                {symbol: 'S', number: 16, name: 'Sulfur', block: 'p', group: '6A'},
+                {symbol: 'Cl', number: 17, name: 'Chlorine', block: 'p', group: '7A'},
+                {symbol: 'Ar', number: 18, name: 'Argon', block: 'p', group: '8A'},
+                
+                // Period 4 (first row with d-block)
+                {symbol: 'K', number: 19, name: 'Potassium', block: 's', group: '1A'},
+                {symbol: 'Ca', number: 20, name: 'Calcium', block: 's', group: '2A'},
+                {symbol: 'Sc', number: 21, name: 'Scandium', block: 'd', group: '3B'},
+                {symbol: 'Ti', number: 22, name: 'Titanium', block: 'd', group: '4B'},
+                {symbol: 'V', number: 23, name: 'Vanadium', block: 'd', group: '5B'},
+                {symbol: 'Cr', number: 24, name: 'Chromium', block: 'd', group: '6B'},
+                {symbol: 'Mn', number: 25, name: 'Manganese', block: 'd', group: '7B'},
+                {symbol: 'Fe', number: 26, name: 'Iron', block: 'd', group: '8'},
+                {symbol: 'Co', number: 27, name: 'Cobalt', block: 'd', group: '8'},
+                {symbol: 'Ni', number: 28, name: 'Nickel', block: 'd', group: '8'},
+                {symbol: 'Cu', number: 29, name: 'Copper', block: 'd', group: '1B'},
+                {symbol: 'Zn', number: 30, name: 'Zinc', block: 'd', group: '2B'},
+                {symbol: 'Ga', number: 31, name: 'Gallium', block: 'p', group: '3A'},
+                {symbol: 'Ge', number: 32, name: 'Germanium', block: 'p', group: '4A'},
+                {symbol: 'As', number: 33, name: 'Arsenic', block: 'p', group: '5A'},
+                {symbol: 'Se', number: 34, name: 'Selenium', block: 'p', group: '6A'},
+                {symbol: 'Br', number: 35, name: 'Bromine', block: 'p', group: '7A'},
+                {symbol: 'Kr', number: 36, name: 'Krypton', block: 'p', group: '8A'}
+            ];
+
+            // Create elements in grid
+            elements.forEach((element, index) => {
+                const elementBox = document.createElement('div');
+                elementBox.className = 'mini-element';
+                
+                if (element) {
+                    elementBox.classList.add(`${element.block}-element`);
+                    elementBox.innerHTML = element.symbol;
+                    elementBox.onclick = () => showBlockInfo(element);
+                } else {
+                    elementBox.style.background = 'transparent';
+                }
+                
+                table.appendChild(elementBox);
+            });
+        }
+
+        // Show block information
+        function showBlockInfo(element) {
+            const infoDiv = document.getElementById('blockInfo');
+            const blockInfo = {
+                's': {
+                    name: 'S-Block',
+                    color: '#ff6b6b',
+                    description: 'The Quiet Suburbs',
+                    characteristics: 'Predictable metals that like to follow rules!'
+                },
+                'd': {
+                    name: 'D-Block',
+                    color: '#54a0ff',
+                    description: 'The Business District',
+                    characteristics: 'Hardworking transition metals with many skills!'
+                },
+                'p': {
+                    name: 'P-Block',
+                    color: '#2ed573',
+                    description: 'The Shopping District',
+                    characteristics: 'Diverse neighborhood with metals, non-metals, and gases!'
+                }
+            };
+            
+            const block = blockInfo[element.block];
+            
+            infoDiv.innerHTML = `
+                <div style="animation: slideInUp 0.5s ease-out;">
+                    <h3 style="color: ${block.color}; margin-bottom: 10px;">
+                        ${element.symbol} - ${element.name}
+                    </h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;">
+                        <strong>Lives in:</strong> ${block.name} (${block.description})
+                    </p>
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;">
+                        <strong>Group:</strong> ${element.group}
+                    </p>
+                    <p style="font-size: 1rem; line-height: 1.4; color: #feca57;">
+                        ${block.characteristics}
+                    </p>
+                </div>
+            `;
+        }
+
+        // Explore districts
+        function exploreDistrict(block) {
+            const districtInfo = {
+                's': {
+                    title: 'S-Block: The Quiet Suburbs 🏠',
+                    description: 'Welcome to the peaceful residential area! Here live the alkali metals (Group 1A) and alkaline earth metals (Group 2A). These elements are like friendly neighbors who always follow the same routine - they have 1 or 2 electrons in their outer shell and behave very predictably!',
+                    residents: 'Hydrogen, Lithium, Sodium, Potassium, Beryllium, Magnesium, Calcium...',
+                    personality: 'Friendly, predictable, and rule-following!'
+                },
+                'd': {
+                    title: 'D-Block: The Business District 🏢',
+                    description: 'Welcome to downtown Element City! This is where all the transition metals work hard every day. They\'re like busy office workers who can do many different jobs - they can form colorful compounds, conduct electricity, and are often very strong and durable!',
+                    residents: 'Iron, Copper, Gold, Silver, Titanium, Chromium, Nickel...',
+                    personality: 'Hardworking, versatile, and strong!'
+                },
+                'p': {
+                    title: 'P-Block: The Shopping District 🏪',
+                    description: 'Welcome to the most diverse neighborhood! Here you\'ll find everything - metals, non-metals, gases, and even the noble gases who keep to themselves. It\'s like a shopping mall where every store is different, but they all belong to the same community!',
+                    residents: 'Carbon, Oxygen, Fluorine, Neon, Aluminum, Chlorine, Argon...',
+                    personality: 'Diverse, exciting, and full of surprises!'
+                }
+            };
+            
+            const info = districtInfo[block];
+            
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                background: rgba(0,0,0,0.8); z-index: 1000; display: flex; 
+                align-items: center; justify-content: center; padding: 20px;
+            `;
+            modal.innerHTML = `
+                <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 20px; max-width: 600px; position: relative; animation: slideInUp 0.5s ease-out;">
+                    <h2 style="text-align: center; margin-bottom: 20px;">${info.title}</h2>
+                    <p style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 15px;">${info.description}</p>
+                    <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                        <h4 style="color: #feca57; margin-bottom: 10px;">🏠 Who Lives Here:</h4>
+                        <p style="font-size: 1.1rem;">${info.residents}</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                        <h4 style="color: #feca57; margin-bottom: 10px;">😊 Neighborhood Personality:</h4>
+                        <p style="font-size: 1.1rem;">${info.personality}</p>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.3); border: none; color: white; font-size: 1.5rem; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">×</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Show neighborhood details
+        function showNeighborhoodDetails(block) {
+            const details = {
+                's': 'S-Block elements are like the responsible neighbors who always keep their yards neat! They have 1 or 2 electrons in their outer shell and love to give them away to become stable. Group 1A (alkali metals) are so reactive they explode in water - like excited puppies! Group 2A (alkaline earth metals) are calmer but still very friendly!',
+                'd': 'D-Block elements are the multitaskers of Element City! They can conduct electricity, form beautiful colored compounds, and are often used to make strong alloys. Iron makes steel, copper makes wires, and gold makes jewelry. They\'re like the skilled craftspeople who can do any job!',
+                'p': 'P-Block is the wildest neighborhood! You\'ve got carbon (in your pencil and body), oxygen (what you breathe), neon (in bright signs), and chlorine (in pools). The noble gases at the end are like the quiet kids who don\'t want to play with anyone - they\'re perfectly happy alone!'
+            };
+            
+            alert(details[block]);
+        }
+
+        // Quiz function
+        function checkAnswer(element, isCorrect) {
+            const feedback = document.getElementById('quiz-feedback');
+            const options = document.querySelectorAll('.quiz-option');
+            
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+                if (option === element) {
+                    if (isCorrect) {
+                        option.classList.add('correct');
+                        feedback.innerHTML = '🎉 Perfect! S-Block contains the alkali metals like sodium in Groups 1A and 2A!';
+                        feedback.style.color = '#2ed573';
+                        createConfetti();
+                    } else {
+                        option.classList.add('incorrect');
+                        feedback.innerHTML = '❌ Not quite! Alkali metals live in the S-Block on the left side of the periodic table!';
+                        feedback.style.color = '#ff6b6b';
+                    }
+                }
+            });
+            
+            if (!isCorrect) {
+                setTimeout(() => {
+                    options.forEach(option => {
+                        if (option.textContent.includes('S-Block')) {
+                            option.classList.add('correct');
+                        }
+                    });
+                }, 1000);
+            }
+        }
+
+        // Create confetti animation
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `
+                    position: fixed;
+                    width: 10px;
+                    height: 10px;
+                    background: ${['#ff6b6b', '#feca57', '#54a0ff', '#2ed573'][Math.floor(Math.random() * 4)]};
+                    top: -10px;
+                    left: ${Math.random() * window.innerWidth}px;
+                    animation: confetti-fall 3s linear forwards;
+                    z-index: 1000;
+                `;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        // Navigation functions
+        function goBack() {
+            window.history.back();
+        }
+
+        function nextPage() {
+            alert('🚀 Excellent work learning about element neighborhoods! You\'re ready for the next adventure in chemistry!');
+        }
+
+        function reviewPage() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.animation = 'pulse-glow 1s ease-in-out';
+                }, index * 500);
+            });
+        }
+
+        // Add additional CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInUp {
+                0% { opacity: 0; transform: translateY(20px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
+            
+            @keyframes confetti-fall {
+                0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(${window.innerHeight + 10}px) rotate(720deg); opacity: 0; }
+            }
+            
+            @keyframes pulse-glow {
+                0% { box-shadow: 0 0 5px rgba(255,255,255,0.3); }
+                50% { box-shadow: 0 0 25px rgba(255,255,255,0.6), 0 0 35px rgba(255,255,255,0.4); }
+                100% { box-shadow: 0 0 5px rgba(255,255,255,0.3); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize mini periodic table when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createMiniPeriodicTable();
+        });
+    </script>
+</body>
+</html>
