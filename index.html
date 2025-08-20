@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Chemistry Learning Hub - Interactive Science Education</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: rainbow-text 4s infinite;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 30px;
+            border-radius: 25px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Floating elements animation */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 2.5rem;
+            animation: float-around 20s infinite linear;
+            opacity: 0.15;
+        }
+
+        .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 20%; right: 15%; animation-delay: 4s; }
+        .floating-element:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 8s; }
+        .floating-element:nth-child(4) { bottom: 20%; right: 25%; animation-delay: 12s; }
+        .floating-element:nth-child(5) { top: 50%; left: 5%; animation-delay: 16s; }
+        .floating-element:nth-child(6) { top: 30%; right: 5%; animation-delay: 20s; }
+
+        /* Navigation Cards */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .nav-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+            opacity: 0;
+        }
+
+        .nav-card:hover::before {
+            animation: shine 0.8s ease-in-out;
+            opacity: 1;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(255, 255, 255, 0.2);
+            border-color: #ffd700;
+        }
+
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 3s infinite;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .card-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .card-features {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .card-features li {
+            padding: 5px 0;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .view-button {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .view-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .features-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #ffd700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: wiggle 4s infinite;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #a8edea;
+        }
+
+        .feature-desc {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+
+        .footer p {
+            margin: 10px 0;
+            opacity: 0.8;
+        }
+
+        .github-link {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .github-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes rainbow-text {
+            0% { color: #ff6b6b; }
+            16% { color: #ffa500; }
+            32% { color: #ffff00; }
+            48% { color: #00ff00; }
+            64% { color: #0080ff; }
+            80% { color: #8b00ff; }
+            100% { color: #ff6b6b; }
+        }
+
+        @keyframes float-around {
+            0% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-30px) rotate(90deg); }
+            50% { transform: translateY(0px) rotate(180deg); }
+            75% { transform: translateY(30px) rotate(270deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+        }
+
+        @keyframes shine {
+            0% { left: -50%; top: -50%; }
+            100% { left: 150%; top: 150%; }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating elements background -->
+    <div class="floating-elements">
+        <div class="floating-element">⚛️</div>
+        <div class="floating-element">🧪</div>
+        <div class="floating-element">🔬</div>
+        <div class="floating-element">⚗️</div>
+        <div class="floating-element">🧬</div>
+        <div class="floating-element">💡</div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🧪 Chemistry Learning Hub</h1>
+            <p>Interactive Science Education for Young Minds</p>
+            <div class="subtitle">
+                🌟 Learn Chemistry Through Fun, Games, and Adventures! 🌟
+            </div>
+        </div>
+
+        <!-- Navigation Cards -->
+        <div class="nav-grid">
+            <div class="nav-card" onclick="navigateTo('Unit_1_Main_Navigation.html')">
+                <div class="card-icon">🏠</div>
+                <div class="card-title">Unit 1 Navigation</div>
+                <div class="card-description">
+                    Main hub for all Unit 1 lessons on atomic structure and chemistry basics
+                </div>
+                <ul class="card-features">
+                    <li>📚 Complete lesson overview</li>
+                    <li>🎯 Progress tracking</li>
+                    <li>🎮 Interactive navigation</li>
+                    <li>⭐ 6 comprehensive lessons</li>
+                </ul>
+                <a href="Unit_1_Main_Navigation.html" class="view-button">Start Learning</a>
+            </div>
+
+            <div class="nav-card" onclick="navigateTo('Lesson_1_Atomic_Structure_Basics.html')">
+                <div class="card-icon">⚛️</div>
+                <div class="card-title">Lesson 1: Atomic Basics</div>
+                <div class="card-description">
+                    Discover the building blocks of matter with interactive animations and games
+                </div>
+                <ul class="card-features">
+                    <li>🧱 Matter and atoms</li>
+                    <li>🎭 Fun character stories</li>
+                    <li>🎮 Discovery games</li>
+                    <li>👶 Kid-friendly content</li>
+                </ul>
+                <a href="Lesson_1_Atomic_Structure_Basics.html" class="view-button">Explore Atoms</a>
+            </div>
+
+            <div class="nav-card" onclick="navigateTo('Lesson_2_Inside_the_Atom.html')">
+                <div class="card-icon">🔬</div>
+                <div class="card-title">Lesson 2: Inside the Atom</div>
+                <div class="card-description">
+                    Journey inside atoms to meet protons, neutrons, and electrons
+                </div>
+                <ul class="card-features">
+                    <li>🔴 Protons and nucleus</li>
+                    <li>⚪ Neutrons explained</li>
+                    <li>🔵 Dancing electrons</li>
+                    <li>⚖️ Electric charges</li>
+                </ul>
+                <a href="Lesson_2_Inside_the_Atom.html" class="view-button">Go Inside</a>
+            </div>
+
+            <div class="nav-card" onclick="navigateTo('Page_3_Chemical_Symbols_Fun.html')">
+                <div class="card-icon">🔤</div>
+                <div class="card-title">Chemical Symbols</div>
+                <div class="card-description">
+                    Learn the secret code language that scientists use for elements
+                </div>
+                <ul class="card-features">
+                    <li>📝 Symbol writing rules</li>
+                    <li>🏛️ Latin name mysteries</li>
+                    <li>🎯 Interactive games</li>
+                    <li>🎪 Fun analogies</li>
+                </ul>
+                <a href="Page_3_Chemical_Symbols_Fun.html" class="view-button">Crack the Code</a>
+            </div>
+
+            <div class="nav-card" onclick="navigateTo('Page_4_Atomic_Numbers_Fun.html')">
+                <div class="card-icon">🔢</div>
+                <div class="card-title">Atomic Numbers</div>
+                <div class="card-description">
+                    Understand atomic addresses and electron neighborhoods
+                </div>
+                <ul class="card-features">
+                    <li>🆔 Atomic ID numbers</li>
+                    <li>🏢 Energy level floors</li>
+                    <li>🧮 Interactive calculator</li>
+                    <li>🌱 NPK fertilizers</li>
+                </ul>
+                <a href="Page_4_Atomic_Numbers_Fun.html" class="view-button">Discover Numbers</a>
+            </div>
+
+            <div class="nav-card" onclick="showComingSoon()">
+                <div class="card-icon">🚀</div>
+                <div class="card-title">More Lessons Coming</div>
+                <div class="card-description">
+                    Periodic table, chemical reactions, and advanced chemistry topics
+                </div>
+                <ul class="card-features">
+                    <li>🗂️ Periodic table</li>
+                    <li>⚗️ Chemical reactions</li>
+                    <li>🧪 Laboratory experiments</li>
+                    <li>🎊 Advanced topics</li>
+                </ul>
+                <button class="view-button" onclick="showComingSoon()">Coming Soon</button>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section">
+            <div class="features-title">✨ What Makes This Special? ✨</div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">👶</div>
+                    <div class="feature-title">Kid-Friendly</div>
+                    <div class="feature-desc">Designed specifically for 10-year-olds with simple language and fun examples</div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🎮</div>
+                    <div class="feature-title">Interactive Games</div>
+                    <div class="feature-desc">Learn through clicking, exploring, and playing educational games</div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-title">Beautiful Animations</div>
+                    <div class="feature-desc">Stunning visual effects and animations make learning exciting</div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🏠</div>
+                    <div class="feature-title">Real-Life Analogies</div>
+                    <div class="feature-desc">Complex concepts explained using familiar things like schools and playgrounds</div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-title">Mobile Friendly</div>
+                    <div class="feature-desc">Works perfectly on phones, tablets, and computers</div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🆓</div>
+                    <div class="feature-title">Completely Free</div>
+                    <div class="feature-desc">Open-source educational content available to everyone</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>🌟 <strong>Chemistry Learning Hub</strong> - Making Science Fun and Accessible 🌟</p>
+            <p>Built with ❤️ for young scientists everywhere</p>
+            <p>
+                <a href="https://github.com/dr-brain-abdullah/dr-brain-abdullah" class="github-link" target="_blank">
+                    🐙 View on GitHub
+                </a>
+            </p>
+            <p style="font-size: 0.9rem; margin-top: 20px;">
+                © 2025 Chemistry Learning Hub | Educational content for everyone
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        function showComingSoon() {
+            alert('🚀 Exciting new lessons are coming soon! 🌟\n\nWe\'re working hard to bring you more amazing chemistry adventures:\n\n📊 Periodic Table Explorer\n⚗️ Chemical Reaction Lab\n🧪 Virtual Experiments\n🎊 Advanced Chemistry Topics\n\nStay tuned for more learning fun! 🎉');
+        }
+
+        // Add welcome animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.nav-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.8s ease-out';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+
+            // Add sparkle effect on hover
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    createSparkles(this);
+                });
+            });
+        });
+
+        function createSparkles(element) {
+            for (let i = 0; i < 3; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = '✨';
+                sparkle.style.position = 'absolute';
+                sparkle.style.fontSize = '1.5rem';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.animation = `sparkle 1.5s ease-out forwards`;
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.zIndex = '10';
+                
+                element.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    if (sparkle.parentNode) {
+                        sparkle.remove();
+                    }
+                }, 1500);
+            }
+        }
+
+        // Add sparkle animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkle {
+                0% { transform: scale(0) rotate(0deg); opacity: 1; }
+                50% { transform: scale(1.2) rotate(180deg); opacity: 0.8; }
+                100% { transform: scale(0) rotate(360deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
